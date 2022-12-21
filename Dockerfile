@@ -10,7 +10,7 @@ COPY package.json package-lock.json ./
 RUN npm install && npm install --production=false --package-lock-only
 
 COPY . .
-RUN npm run build --prod
+RUN npm run build
 #RUN ng build --prod --output-path=dist 
 
 FROM nginx:1.15.8-alpine
