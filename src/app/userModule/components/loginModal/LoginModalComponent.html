@@ -1,0 +1,234 @@
+<!-- Modal content-->
+<div class="modal-content">
+    <div class="modal-header" style="border-bottom: 0px solid !important;height:10px">
+        <button type="button" class="close" (click)="activeModal.close()">&times;</button>
+
+    </div>
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="col-md-12" *ngIf="showComponent=='login'">
+
+                <div class="row ">
+                    <div class="col-md-12 col-10 text-center">
+                        <h4 class="started_heading">
+                            Sign in
+                        </h4>
+                    </div>
+                </div>
+                <form class="" [formGroup]="loginForm">
+                    <div class="row">
+                        <div class="col-10 offset-md-2">
+
+                            <label class="form-label-mine" for="">Enter email</label>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+
+                        <div class="col-10 offset-md-2">
+                            <input type="text" formControlName="loginEmail" class="form-control">
+                        </div>
+                        <mat-error *ngIf="loginEmail?.errors?.['required'] && loginEmail?.touched">
+                            Email address is required
+                        </mat-error>
+                        <mat-error *ngIf="loginEmail?.errors?.['email'] && loginEmail?.touched">
+                            Please enter a valid email address
+                        </mat-error>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-10 offset-md-2">
+
+                            <label class="form-label-mine" for="">Password</label>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+
+                        <div class="col-10 offset-md-2">
+                            <div class="input-group">
+                                <input type="password" formControlName="loginPassword" class="form-control"
+                                    id="show_hide_password" placeholder="********" aria-label="Recipient's username"
+                                    aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="basic-addon6">
+                                        <a id="show_hide_passwordi">
+                                            <i class="fa fa-eye-slash"></i>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                            <mat-error *ngIf="loginPassword?.errors?.['required'] && loginPassword?.touched">
+                                Email address is required
+                            </mat-error>
+                            <a href="javascript:void(0)" (click)="showComponent='forgotPassword'">
+                                <p class="font-weight-bold">Forgot Password?</p>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="row margin_50">
+
+
+                        <div class="col-10 text-center">
+                            <a (click)="login()" id="sample" class="btn btn-success btn-sm mce-close">LOGIN</a>
+
+                        </div>
+                    </div>
+
+
+                </form>
+
+
+            </div>
+            <div class="col-md-12" *ngIf="showComponent==='forgotPassword'">
+                <div class="row margin_67">
+
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-10 forgot-icon">
+                        <span class="dot d-flex mb-2" style="align-items: center; justify-content: center;">
+                            <i class="fa fa-key fa-2x icon-active" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h5 class="started_heading">
+                            <strong style="color:#000"> Forgot Password?</strong>
+                        </h5>
+
+                        <p class="paragraph_accepted">
+                            No worries, we will send you a one time password on your email
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row margin_30">
+                    <div class="col-9 offset-md-4 text-center" style="margin-left:50px">
+                        <input type="text" class="form-control" placeholder="enter email"
+                            [(ngModel)]="forgotPasswordEmail">
+                    </div>
+                </div>
+
+                <div class="row margin_45">
+                    <div class="col-12 text-center">
+                        <a href="javascript:void(0)" class="btn btn-success" (click)="submitForgotPassword()">
+                            RESET PASSWORD
+                        </a>
+                        <a href="javascript:void(0)" (click)="showComponent='login'">
+                            <p class="paragraph_accepted mt-4">
+                                <i class="fa fa-arrow-left mr-2" aria-hidden="true"></i> Back to Log in
+                            </p>
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-md-12" *ngIf="showComponent==='enterOTP'">
+
+
+                <div class="row margin_67">
+
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-6 offset-md-5 text-center forgot-icon">
+                        <span class="dot d-flex mb-2" style="align-items: center; justify-content: center;">
+                            <i class="fa fa-key fa-2x icon-active" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h5 class="started_heading">
+                            <strong style="color:#000"> Forgot Password?</strong>
+                        </h5>
+
+
+                    </div>
+                </div>
+
+                <div class="row margin_30">
+                    <div class="col-9 text-center" style="margin-left:50px">
+                        <input type="text" class="form-control" placeholder="enter OTP" [(ngModel)]="otp">
+                    </div>
+                </div>
+
+                <div class="row margin_45">
+                    <div class="col-12 text-center">
+                        <a href="javascript:void(0);" (click)="submitOTP()" class="btn btn-success">
+                            CONFIRM
+                        </a>
+                        <a href="javascript:void(0);" (click)="showComponent='login'">
+                            <p class="paragraph_accepted mt-4">
+                                <i class="fa fa-arrow-left mr-2" aria-hidden="true"></i> Back to Log in
+                            </p>
+                        </a>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-md-12" *ngIf="showComponent==='enterNewPassword'">
+
+
+                <div class="row margin_67">
+
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-12 offset-md-5 text-center forgot-icon">
+                        <span class="dot d-flex mb-2" style="align-items: center; justify-content: center;">
+                            <i class="fa fa-key fa-2x icon-active" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h5 class="started_heading">
+                            <strong style="color:#000"> Set New Password</strong>
+                        </h5>
+
+
+                    </div>
+                </div>
+
+                <div class="row margin_30" style="margin-left:50px">
+                    <div class="col-10  text-center">
+                        <input type="password" class="form-control" placeholder="new password" [(ngModel)]="password" />
+                    </div>
+                    <div class="col-10 text-center mt-4">
+                        <input type="password" class="form-control" placeholder="confirm password"
+                            [(ngModel)]="confirmPassword">
+                    </div>
+                </div>
+
+                <div class="row margin_45">
+                    <div class="col-12 text-center">
+                        <a href="javascript:void(0);" (click)="submitNewPassword()" class="btn btn-success">
+                            Reset Password
+                        </a>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+</div>

@@ -1,0 +1,90 @@
+<div class="row">
+    <div class="col-9">
+        <div class="col-12">
+            <a routerLink="/admin/manage">
+                <h3><i class="fa fa-long-arrow-left"></i></h3>
+            </a>
+        </div>
+        <div class="row border-bottom pb-3">
+            <div class="col-8 text-right">
+                <h3>Birthday Activities</h3>
+            </div>
+            <div class="col-4 text-right mt-2">
+                <div class="">
+                    <button (click)="add(formModal)" class="btn btn-outline-success">Add New</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row border-bottom" *ngFor="let birthdayActivity of birthdayActivities">
+    <div class="col-12 mt-3">
+        <div class="container">
+            <div class="bg-image">
+                <img src="{{configService.getServerUrl()+birthdayActivity.imageUrl}}" class="slider_new_image" />
+            </div>
+        </div>
+    </div>
+
+    <div class="col-8">
+        <h5 class="text-center mt-2">
+            <a (click)="edit(birthdayActivity,formModal)">
+                {{birthdayActivity.name}}
+            </a>
+        </h5>
+        <p>{{birthdayActivity.description}}</p>
+
+        <span class="float-right ml-2 mt-2">
+            <button class="btn btn-defaul btn-sm" (click)="delete(birthdayActivity,deleteModal)">
+                <i class="fa fa-trash"></i>
+            </button>
+        </span>
+    </div>
+</div>
+
+<ng-template #formModal let-modal>
+
+    <div class="modal-header">
+        <h5 class="modal-title">Admin User</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form action="">
+            <div class="form-group">
+                <label for="" class="form-label">Name</label>
+                <input name="name" [(ngModel)]="birthdayActivity.name" type="text" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="" class="form-label">Description</label>
+                <textarea name="description" [(ngModel)]="birthdayActivity.description" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="" class="form-label">Image</label>
+                <input name="image" (change)="imageFileInputChange($event)" type="file" class="form-control" />
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" (click)="submitForm()">Save</button>
+    </div>
+</ng-template>
+
+<ng-template #deleteModal let-modal>
+
+    <div class="modal-header">
+        <h5 class="modal-title">Delete Admin User</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        Delete birthday activity {{deleteBirthdayActivity.name}}?
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" (click)="submitDelete()">Delete</button>
+    </div>
+</ng-template>

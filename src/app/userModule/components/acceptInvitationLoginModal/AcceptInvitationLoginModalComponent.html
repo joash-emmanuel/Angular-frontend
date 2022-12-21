@@ -1,0 +1,32 @@
+<div class="modal-header" style="border-bottom: 0px solid !important">
+    <button type="button" class="close" (click)="activeModal.dismiss()" >&times;</button>
+
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h5>To continue,<br> Kindly accept your invitation or log in</h5>
+
+            <div class="col-12 margin_45">
+                <a (click)="acceptInvitation()" href="javascript:void(0)" class="btn btn-success btn-lg ">
+                    ACCEPT INVITATION
+                </a>
+
+            </div>
+            <div class="col-12 margin_45">
+                <h5>Or</h5>
+            </div>
+            <div class="col-12 margin_45">
+                <a (click)="login()" href="javascript:void(0)" class="btn btn-outline-success btn-lg">
+                    Log in
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer" style="border-top: 0px solid !important">
+
+</div>

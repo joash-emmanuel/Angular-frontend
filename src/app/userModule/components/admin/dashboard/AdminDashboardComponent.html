@@ -1,0 +1,151 @@
+<div class="container">
+    <div class="row">
+
+        <div class="col-7 text-right">
+            <h3>Admin Dashboard Metrics</h3>
+        </div>
+
+        <div class="col-5 mt-3">
+            <div class="col-10 offset-1">
+                <a href="javascript:void(0)" routerLink="/admin/manage" class="btn btn-success">MANAGE
+                    DASHBOARD</a>
+            </div>
+        </div>
+        <div class="adminDashboardMetrics" style="display: flex; flex-direction: column; justify-content: center;">
+            <div class="row my-3" >
+                <div class="col-8 offset-md-2">
+
+                    <div class="card component-card_1">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6 offset-md-3">
+                                    <h5 class="text-center">Wallet Balance</h5>
+                                </div>
+                                <div class="col-6 text-center">Current</div>
+                                <div class="col-6 text-center">Available</div>
+
+                                <div class="col-6 text-center border-right mt-2">
+                                    <h4 class="text-center text-success">${{totalCurrentBalance}}</h4>
+                                </div>
+                                <div class="col-6 text-center mt-2">
+                                    <h4 class="text-center text-success">${{totalAvailableBalance}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="container">
+                    <div class="col-8 offset-md-2">
+
+                        <div class="card component-card_1">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-6 offset-md-3">
+                                        <h4 class="text-center">Wallet Withdrawals</h4>
+                                    </div>
+                                    <div class="col-12">&nbsp;</div>
+                                    <div class="col-6  offset-md-3 text-center mt-2">
+                                        <h4 class="text-center text-success">${{walletWithdrawals}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col-8 offset-md-2">
+
+                    <div class="card component-card_1">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6 offset-md-3">
+                                    <h5 class="text-center">Care Shopping Vouchers</h5>
+                                </div>
+                                <div class="col-6 text-center">Pledges</div>
+                                <div class="col-6 text-center">Paid Pledges</div>
+
+                                <div class="col-6 text-center border-right mt-2">
+                                    <h4 class="text-center text-success">${{[pledges]}}</h4>
+                                </div>
+                                <div class="col-6 text-center mt-2">
+                                    <h4 class="text-center text-success">${{paidPledges}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row my-3">
+                <div class="col-8 offset-md-2">
+
+                    <div class="card component-card_1">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6 offset-md-3">
+                                    <h5 class="text-center">Care Shoppers</h5>
+                                </div>
+                                <div class="col-6 text-center">Total</div>
+                                <div class="col-6 text-center">Active</div>
+
+                                <div class="col-6 text-center border-right mt-2">
+                                    <h4 class="text-center text-success">{{totalCareShoppers}}</h4>
+                                </div>
+                                <div class="col-6 text-center mt-2">
+                                    <h4 class="text-center text-success">{{activeCareShoppers}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row my-3">
+                <div class="col-8 offset-md-2">
+
+                    <div class="card component-card_1">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6 offset-md-3">
+                                    <h5 class="text-center">Total Revenue</h5>
+                                </div>
+                                <div class="col-6 text-center">1st fees</div>
+                                <div class="col-6 text-center">Due Fees</div>
+
+                                <div class="col-6 text-center border-right mt-2">
+                                    <h4 class="text-center text-success">${{firstFees}}</h4>
+                                </div>
+                                <div class="col-6 text-center mt-2">
+                                    <h4 class="text-center text-success">${{dueFees}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row my-3">
+                <div class="col-8 offset-md-2">
+
+                    <div class="card component-card_1">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6 offset-md-3">
+                                    <h5 class="text-center">Care Donations</h5>
+                                </div>
+                                <div class="col-12">&nbsp;</div>
+                                <div class="col-12 text-center mt-2">
+                                    <h4 class="text-center text-success">${{careDonations}}</h4>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

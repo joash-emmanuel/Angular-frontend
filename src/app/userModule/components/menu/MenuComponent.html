@@ -1,0 +1,80 @@
+<div class="d-none d-lg-block">
+    <div class="widget widget-mine widget-activity-three">
+        <div class="widget-content">
+            <div class="mt-container mx-auto">
+                <div class="timeline-line">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link" id="v-pills-home-tab" routerLink="/home" routerLinkActive="icon-active"
+                            role="tab" aria-controls="v-pills-home" aria-selected="true"> <i
+                                class="fa fa-home fa-2x mr-2" aria-hidden="true"></i>
+                            Home</a>
+                        <a class="nav-link icon-normal " id="v-pills-home-tab" routerLink="/brands"
+                            routerLinkActive="icon-active" role="tab" aria-controls="v-pills-home" aria-selected="true">
+                            <i class="fa fa-shopping-bag fa-2x mr-2" aria-hidden="true"></i> Brands </a>
+                        <a class="nav-link icon-normal " id="v-pills-home-tab" routerLink="logs"
+                            routerLinkActive="icon-active" role="tab" aria-controls="v-pills-home" aria-selected="true">
+                            <i class="fa fa-calendar-plus-o fa-2x mr-2" aria-hidden="true"></i> Logs</a>
+
+                        <a class="nav-link icon-normal " id="v-pills-home-tab" routerLink="/wallet/wallet"
+                            routerLinkActive="icon-active" role="tab" aria-controls="v-pills-home" aria-selected="true">
+                            <i class="fa fa-credit-card fa-2x mr-2" aria-hidden="true"></i>Wallet</a>
+                        <a class="nav-link icon-normal " id="v-pills-home-tab" routerLink="/notifications"
+                            routerLinkActive="icon-active" role="tab" aria-controls="v-pills-home" aria-selected="true">
+                            <i class="fa fa-bell-o fa-2x mr-2" aria-hidden="true"></i>
+                            Notifications</a>
+
+                        <h6 class="pt-3 pb-1 suggested-connects">Suggested Connects</h6>
+
+                        <a class="nav-link icon-normal " id="v-pills-home-tab"
+                            routerLink="/profile/profile/{{suggestedConnect.id}}" role="tab"
+                            aria-controls="v-pills-home" aria-selected="true"
+                            *ngFor="let suggestedConnect of suggestedConnects"> <img class="sidebar-icons mr-2"
+                                src="{{configService.getServerUrl()+suggestedConnect.profilePicUrl}}"
+                                alt="">{{suggestedConnect.firstName}}
+                            {{suggestedConnect.lastName}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-lg-none">
+    <div class="sidebar-vh">
+        <div class="row justify-content-center">
+            <div class="mobile-fixed-nav">
+
+                <div class="col-12 mb-4">
+                    <a routerLinkActive="icon-active" routerLink="/home"> <i class="fa fa-home fa-2x icon-active" aria-hidden="true"></i>
+                        <br>
+                        <p class="menu-mobile">Home</p>
+                    </a>
+                </div>
+                <div class="col-12 my-4">
+                    <a routerLinkActive="icon-active" routerLink="/brands"> <i class="fa fa-shopping-bag fa-2x" aria-hidden="true"></i>
+                        <br>
+                        <p class="menu-mobile">Brands</p>
+                    </a>
+                </div>
+                <div class="col-12 my-4">
+                    <a routerLinkActive="icon-active" routerLink="/logs"> <i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
+                        <br>
+                        <p class="menu-mobile">Logs</p>
+                    </a>
+                </div>
+                <div class="col-12 my-4">
+                    <a routerLinkActive="icon-active" routerLink="/wallet/wallet"> <i class="fa fa-credit-card fa-2x"
+                            aria-hidden="true"></i>
+                        <br>
+                        <p class="menu-mobile">Wallet</p>
+                    </a>
+                </div>
+                <div class="col-12 my-4">
+                    <a routerLinkActive="icon-active" routerLink="/notifications"> <i class="fa fa-bell fa-2x" aria-hidden="true"></i>
+                        <br>
+                        <p class="menu-mobile">Alerts</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

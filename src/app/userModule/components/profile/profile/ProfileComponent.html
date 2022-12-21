@@ -1,0 +1,192 @@
+<div class="col-12">
+    <div class="widget widget-chart-three">
+        <div class="widget-content animated-underline-content widget-content-area">
+            <div id="uniqueVisits">
+                <div class="row">
+                    <div class="col-md-2 col-4">
+                        <div class="b-logo d-flex align-items-center">
+                            <img class="img-fluid view_profile_brand_img_1"
+                                src="{{configService.getServerUrl()+shopper!?.profilePicUrl}}">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-4 ml-3 profile-header text-left">
+                        <h3 class="profile-text-header">{{shopper!?.firstName}} {{shopper!?.lastName}}</h3>
+
+                        <span>{{horoscope()}}</span>
+
+                        <p class="mt-3">
+                            <a href="javascript:void(0)" (click)="edit()" *ngIf="ownProfile!">
+                                <i class="fa fa-edit"></i><span class="edit-profile"> Edit Profile</span>
+                            </a>
+                            <button (click)="connect()" class="btn" [class.btn-success]="!connected"
+                                [class.btn-outline-warning]="connected"
+                                *ngIf="!ownProfile!">{{connected?'Connected':'Connect'}}</button>
+                        </p>
+                    </div>
+
+                    <div class="col-md-4 col-2 profile-header">
+                        <div class="dropdown custom-dropdown" [class.show]="dropDownActive">
+                            <a class="dropdown-toggle" #dropDown (click)="toggleDropDown()" href="javascript:void(0)"
+                                role="button" id="dropdownMenuLink-1" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-share-square-o fa-2x  ml-2"></i>
+                            </a>
+
+                            <div [class.show]="dropDownActive" class="dropdown-menu"
+                                aria-labelledby="dropdownMenuLink-1">
+                                <span>Share to:</span>
+                                <a class="dropdown-item" href="javascript:void(0);"> <img
+                                        src="assets/brandlogs/whatsapp.png" alt=""
+                                        class="img-fluid mr-1 share-dropdown-btn"> Whatsapp</a>
+                                <a class="dropdown-item" href="javascript:void(0);"> <img
+                                        src="assets/brandlogs/facebook.png" alt=""
+                                        class="img-fluid mr-1 share-dropdown-btn"> Facebook</a>
+                                <a class="dropdown-item" href="javascript:void(0);"> <img
+                                        src="assets/brandlogs/share_link.png" alt=""
+                                        class="img-fluid mr-1 share-dropdown-btn"> Copy Link</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-3 col-6">
+                        <p class="profile-loggedby">
+                            Logged By <span class="home-profile-500">{{loggedByCount}}</span>
+                        </p>
+                    </div>
+                    <div class="col-md-3 col-6 text-left">
+                        <p class="profile-loggedby">
+                            Connects <span class="home-profile-500">{{connectsCount}}</span> <i
+                                class="fa fa-caret-down text-success caret-profile"></i>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav nav-tabs nav-fill mb-3"
+                            id="animateLine" role="tablist">
+                            <li [ngbNavItem]="1" class="nav-item">
+                                <a ngbNavLink>Logs</a>
+                                <ng-template ngbNavContent>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3" *ngFor="let yourLog of yourLogs">
+                                            <div class="card component-card_9">
+                                                <a routerLink="/home">
+                                                    <img src="{{configService.getServerUrl()+yourLog.logImages[0]!?.url}}"
+                                                        class="card-img-top package_images" alt="widget-card-2">
+                                                </a>
+                                                <div class="card-body package-listing-footer">
+
+                                                    <span class="badge badge-success pre-pre ">PRE</span>
+
+                                                    <div class="row">
+                                                        <div class="col-2">
+                                                            <a routerLink="/profile/profile/{{yourLog.log.shopper.id}}">
+                                                                <img src="{{configService.getServerUrl()+yourLog.log.shopper.profilePicUrl}}"
+                                                                    class="" style=" width: 40px; border-radius: 50%;"
+                                                                    alt="">
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-5">
+                                                            <a routerLink="/profile/profile/{{yourLog.log.shopper.id}}">
+                                                                <h6 class="mt-3">{{yourLog.log.shopper.firstName}}
+                                                                    {{yourLog.log.shopper.lastName}}</h6>
+                                                            </a>
+                                                        </div>
+                                                        <!--
+                                                        <div class="col-5">
+                                                            <a routerLink="/repost/{{yourLog.id}}"
+                                                                class="btn btn-success logs-btn">REPOST</a>
+                                                        </div>
+                                                    -->
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                            </li>
+                            <li [ngbNavItem]="2" class="nav-item">
+                                <a ngbNavLink>Connects</a>
+                                <ng-template ngbNavContent>
+                                    <h6 class="connect-tags">Brand Connects</h6>
+                                    <ngb-carousel [interval]="0" [showNavigationArrows]="true" [showNavigationIndicators]="false">
+                                        <ng-template ngbSlide
+                                            *ngFor="let brandConnectionChunk of brandConnectionChunks">
+                                            <div class="row" style="min-width: 100%;">
+                                                <div [class.col-3]="chunkSize===4" [class.col-4]="chunkSize===3"
+                                                    [class.col-6]="chunkSize===2"
+                                                    *ngFor="let brandConnection of brandConnectionChunk">
+                                                    <div class="shadow py-2 rounded">
+                                                        <p class="brand-connect">{{brandConnection.noOfConnects}}
+                                                            Connects</p>
+                                                        <img class="img-fluid view_profile_brand_img"
+                                                            src="{{configService.getServerUrl()+'/'+brandConnection.brand.logoUrl}}">
+                                                        <p class="mt-2 text-muted">{{brandConnection.brand.name}}
+                                                        </p>
+                                                        <span *ngIf="brandConnected(brandConnection.brand.id)">
+                                                            <button class="btn  button-connected badge-sm_1">
+                                                                <i class="fa fa-minus-circle font_small mr-2"
+                                                                    style="font-size:18px;margin-left:-15px"
+                                                                    aria-hidden="true"></i>Connected
+                                                            </button>
+                                                        </span>
+                                                        <span *ngIf="!brandConnected(brandConnection.brand.id)">
+                                                            <button (click)="brandConnect(brandConnection.brand.id)"
+                                                                class="btn btn-outline-success">
+                                                                Connect
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </ngb-carousel>
+                                    <h6 class="connect-tags mt-4">Shopper Connects</h6>
+                                    <ngb-carousel  [interval]="0" [showNavigationArrows]="true" [showNavigationIndicators]="false">
+                                        <ng-template ngbSlide
+                                            *ngFor="let shopperConnectionChunk of shopperConnectionChunks">
+                                            <div class="row" style="min-width: 100%;">
+                                                <div [class.col-3]="chunkSize===4" [class.col-4]="chunkSize===3"
+                                                    [class.col-6]="chunkSize===2"
+                                                    *ngFor="let shopperConnection of shopperConnectionChunk">
+                                                    <div class="shadow py-2 rounded">
+                                                        <p class="brand-connect">{{shopperConnection.noOfConnects}} Connects</p>
+                                                        <img class="img-fluid view_profile_brand_img"
+                                                            src="{{configService.getServerUrl()+shopperConnection.profilePicUrl}}">
+                                                        <p class="mt-2 text-muted">
+                                                            {{shopperConnection.firstName}}
+                                                            {{shopperConnection.lastName}} </p>
+                                                        <span
+                                                            *ngIf="loggedInShopper && loggedInShopper.id!==shopperConnection.id && shopperConnected(shopperConnection.id)">
+                                                            <button class="btn  button-connected badge-sm_1">
+                                                                <i class="fa fa-minus-circle font_small mr-2"
+                                                                    style="font-size:18px;margin-left:-15px"
+                                                                    aria-hidden="true"></i>Connected
+                                                            </button>
+                                                        </span>
+                                                        <span
+                                                            *ngIf="loggedInShopper && loggedInShopper.id!==shopperConnection.id && !shopperConnected(shopperConnection.id)">
+                                                            <button (click)="shopperConnect(shopperConnection.id)"
+                                                                class="btn btn-outline-success">Connect</button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </ngb-carousel>
+                                </ng-template>
+                            </li>
+                        </ul>
+                        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

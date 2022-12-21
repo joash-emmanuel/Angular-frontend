@@ -1,0 +1,165 @@
+<!--  BEGIN NAVBAR  -->
+<div class="header-container">
+    <header class="header navbar navbar-expand-sm fixed-top">
+        <div class="container">
+
+            <a href="javascript:void(0);" class="sidebarCollapse" data-placement="bottom">
+                <img alt="logo" src="assets/brandlogs/brandlogs-png-1-1@2x.png" class="mobile-logo">
+            </a>
+
+            <div class="nav-logo align-self-center">
+                <a class="navbar-brand" href="/">
+                    <img alt="logo" src="assets/brandlogs/brandlogs-png-1-1@2x.png" /> <span
+                        class="navbar-brand-name"></span></a>
+            </div>
+
+            <ng-template #rt let-r="result" let-t="term">
+                <div class="row padding-30 items">
+                    <div class="col-12 border-bottom">
+                        <a routerLink="/profile/profile/{{r.id}}">
+                            <div class="row">
+                                <div class="col-2"> <img [src]="configService.getServerUrl()+r.profilePicUrl"
+                                        class="me-1" style="width: 16px" />
+                                </div>
+                                <div class="col-10">
+                                    <ngb-highlight result="{{r.firstName}} {{r.lastName}}" [term]="t"></ngb-highlight>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </ng-template>
+
+            <ul class="navbar-item flex-row">
+                <li class="nav-item align-self-center search-animated">
+                    <form class="form-inline search-full form-inline search" role="search">
+                        <div class="search-bar">
+                            <input type="text" class="form-control search-form-control  ml-lg-auto"
+                                [ngbTypeahead]="search" [resultTemplate]="rt" id="input-search"
+                                style=" width:450px!important" placeholder="Search by account name"
+                                (selectItem)="searchSelectItem($event)">
+                        </div>
+                    </form>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="feather feather-search toggle-search">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </li>
+            </ul>
+
+            <ul class="navbar-item flex-row nav-dropdowns" *ngIf="!loggedIn">
+                <!-- this is only visible in mobiles -->
+                <li class="nav-item dropdown language-dropdown more-dropdown d-block d-sm-none">
+                    <button (click)="acceptInvitation()" class="btn btn-success btn-sm mobile-accept-invitation">
+                        ACCEPT INVITATION
+                    </button>
+                </li>
+
+                <li class="nav-item dropdown message-dropdown d-block d-sm-none">
+                    <a (click)="openLoginModal()" data-toggle="modal"
+                        class="btn btn-outline-success btn-sm mobile-accept-invitation ">
+                        Log in
+                    </a>
+                </li>
+
+
+                <!-- This will  appear on desktops -->
+
+
+                <li class="nav-item dropdown language-dropdown more-dropdown d-none d-sm-block">
+                    <a (click)="acceptInvitation()" class="btn btn-success btn-lg">
+                        ACCEPT INVITATION
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown message-dropdown d-none d-sm-block">
+                    <a (click)="openLoginModal()" class="btn btn-outline-success btn-lg ">
+                        Log in
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="navbar-item flex-row nav-dropdowns" *ngIf="loggedIn">
+                <!-- this is only visible in mobiles -->
+                <li class="nav-item dropdown language-dropdown more-dropdown d-block d-sm-none " *ngIf="!user!.admin">
+                    <button (click)="inviteFriends()" class="btn btn-success btn-sm mobile-accept-invitation-pre">
+                        INVITE FRIENDS
+                    </button>
+                </li>
+
+                <!-- this is only visible in mobiles -->
+                <li class="nav-item dropdown language-dropdown more-dropdown d-block d-sm-none " *ngIf="user!.admin">
+                    <a href="javascript:void(0)" routerLink="/admindashboard"
+                        class="btn btn-success btn-sm mobile-accept-invitation-pre">
+                        ADMIN DASHBOARD
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown message-dropdown d-block d-sm-none">
+                    <a #dropDown (click)="toggleDropDown()" href="javascript:void(0)" role="button" aria-haspopup="true"
+                        aria-expanded="false">
+
+                        <img *ngIf="user!.profilePicUrl" src="{{configService.getServerUrl()+user!.profilePicUrl}}"
+                            class="img-fluid" style="height:50px ;" alt="" />
+                        <i class="fa fa-user fa-lg" *ngIf="!user!.profilePicUrl"></i>
+                    </a>
+
+                    <div [class.show]="dropDownActive" class="dropdown-menu" aria-labelledby="dropdownMenuLink-1">
+
+                        <a (click)="dropDownActive=!dropDownActive" class="dropdown-item" routerLink="/profile/profile">
+                            <i class=" mr-2 fa fa-user"></i> View
+                            Profile </a>
+                        <a (click)="dropDownActive=!dropDownActive" class="dropdown-item"
+                            routerLink="/settings/logsnotifications"> <i class=" mr-2 fa fa-cog"></i>
+                            Help & Settings</a>
+                        <a (click)="dropDownActive=!dropDownActive" class="dropdown-item" (click)="logout()"
+                            href="javaascript:void(0)"> <i class=" mr-2 fa fa-power-off"></i> Logout</a>
+
+                    </div>
+                </li>
+
+                <!-- This will  appear on desktops -->
+                <li class="nav-item dropdown language-dropdown more-dropdown d-none d-sm-block" *ngIf="!user!.admin">
+                    <button (click)="inviteFriends()" class="btn btn-success btn-lg">
+                        INVITE FRIENDS
+                    </button>
+                </li>
+
+                <li class="nav-item dropdown language-dropdown more-dropdown d-none d-sm-block" *ngIf="user!.admin">
+                    <a href="javascript:void(0)" routerLink="/admindashboard" class="btn btn-success btn-lg">
+                        ADMIN DASHBOARD
+                    </a>
+                </li>
+
+                <li class="nav-item dropdown message-dropdown d-none d-sm-block">
+                    <a (click)="toggleDropDown()" href="javascript:void(0)" class="dropdown-toggle" role="button"
+                        id="dropdownMenuLink-1" aria-haspopup="true" aria-expanded="false">
+
+                        <img *ngIf="user!.profilePicUrl" src="{{configService.getServerUrl()+user!.profilePicUrl}}"
+                            class="img-fluid" style="height:60px ;" alt="" />
+
+                        <i class="fa fa-user fa-lg" *ngIf="!user!.profilePicUrl"></i>
+                    </a>
+
+                    <div [class.show]="dropDownActive" class="dropdown-menu" aria-labelledby="dropdownMenuLink-1">
+
+                        <a (click)="dropDownActive=!dropDownActive" class="dropdown-item" routerLink="/profile/profile">
+                            <i class=" mr-2 fa fa-user"></i> View
+                            Profile </a>
+                        <a (click)="dropDownActive=!dropDownActive" class="dropdown-item"
+                            routerLink="/settings/logsnotifications"> <i class=" mr-2 fa fa-cog"></i>
+                            Settings</a>
+                        <a (click)="dropDownActive=!dropDownActive" class="dropdown-item" href="javascript:void(0)"
+                            (click)="logout()"> <i class=" mr-2 fa fa-power-off"></i> Logout</a>
+
+                    </div>
+                </li>
+            </ul>
+
+
+        </div>
+    </header>
+</div>
+<!--  END NAVBAR  -->

@@ -1,0 +1,633 @@
+<div *ngIf="step===1">
+    <div class="row my-3">
+        <div class="col-12">
+            <div class="card component-card_1">
+                <div class="card-body mycustom-padding">
+                    <div class="row">
+                        <div class="col-3 gift-page1 font-weight-bold">
+                            <h6 class="view_gift_header"> $25</h6>
+                        </div>
+                        <div class="col-6 Birthday">
+                            <p>
+                                Care Shopping Voucher
+                            </p>
+                        </div>
+
+                        <div class="col-2">
+                            <a (click)="selectPledgeAmount(25)" href="javascript:void(0)"> <i
+                                    class="fa fa-plus-circle text-success fa-3x float-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-12">
+            <div class="card component-card_1">
+                <div class="card-body mycustom-padding">
+                    <div class="row">
+                        <div class="col-3 gift-page1 font-weight-bold">
+                            <h6 class="view_gift_header"> $50</h6>
+                        </div>
+                        <div class="col-6 Birthday">
+                            <p>
+                                Care Shopping Voucher
+                            </p>
+                        </div>
+
+                        <div class="col-2">
+                            <a (click)="selectPledgeAmount(50)" href="javascript:void(0)"> <i
+                                    class="fa fa-plus-circle text-success fa-3x float-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="row my-3">
+        <div class="col-12">
+            <div class="card component-card_1">
+                <div class="card-body mycustom-padding">
+                    <div class="row">
+                        <div class="col-3 gift-page1 font-weight-bold">
+                            <h6 class="view_gift_header"> $100</h6>
+                        </div>
+                        <div gift-page1 class="col-6 Birthday">
+                            <p>
+                                Care Shopping Voucher
+                            </p>
+                        </div>
+
+                        <div class="col-2">
+                            <a (click)="selectPledgeAmount(100)" href="javascript:void(0)"> <i
+                                    class="fa fa-plus-circle text-success fa-3x float-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+    <div class="row my-3">
+        <div class="col-12">
+            <div class="card component-card_1">
+                <div class="card-body mycustom-padding">
+                    <div class="row">
+                        <div class="col-3 gift-page1 font-weight-bold">
+                            <h6 class="view_gift_header"> $200</h6>
+                        </div>
+                        <div class="col-6 Birthday">
+                            <p>
+                                Care Shopping Voucher
+                            </p>
+                        </div>
+
+                        <div class="col-2">
+                            <a (click)="selectPledgeAmount(200)" href="javascript:void(0)"> <i
+                                    class="fa fa-plus-circle text-success fa-3x float-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
+<div *ngIf="step===2">
+    <div class="card component-card_1 new_card_1">
+        <div class="card-body" style="font-weight: 500; color:black;">
+
+            <div class="row my-4">
+                <div class="col-12 text-center">
+                    <h6 class="view_gift_header">
+                        Pledge Amount
+                    </h6>
+
+                    <img src="assets/brandlogs/coins.png" class="img-fluid coins" alt=""> <span
+                        class="coins-amount text-success">${{amount}}</span>
+
+                    <p class="font-weight-bold">
+                        <img src="assets/brandlogs/hourglass.png" class="my-hour-glass" alt=""> {{daysRemaining}} Days
+                        remaining to
+                        {{log.shopper.firstName}} event.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="row mt-4">
+                <div class="col-10 offset-md-1">
+                    <div class="row">
+                        <div class="col-12">
+                            <p class="font-weight-bold" style="color: black">
+                                Select Pledge payment plan.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col-md-3 mb-2" *ngFor="let pledegPaymentPlanRequest of pledgePaymentPlanRequests">
+                            <a href="javascript:void(0)"
+                                (click)="selectPledgePaymentPlanRequest(pledegPaymentPlanRequest)">
+                                <div class="card component-card_1 border-success ">
+                                    <div class="card-body mycustom-padding">
+                                        <div class="row">
+                                            <div class="col-12 text-center">
+                                                <img src="assets/brandlogs/money-coins.jpg" class="money-coin" alt="">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="col-12 text-center">
+                                                <span class="text-success pledge_amount">
+                                                    ${{pledegPaymentPlanRequest.getAmountRegular()}}
+                                                </span>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row mt-3">
+                                            <div class="col-12 text-center">
+                                                <span class="text-muted font-weight-bold">
+                                                    {{pledegPaymentPlanRequest.pledgePaymentPlanName}}
+                                                </span>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+<div *ngIf="step===3">
+    <div class="card component-card_1 new_card_1">
+        <div class="card-body" style="font-weight: 500; color:black;">
+
+            <div class="row my-4">
+                <div class="col-12 text-center">
+                    <h5 class="view_gift_header">
+                        Payment Plan Review
+                    </h5>
+
+                    <h6 class="view_gift_header">
+                        One Time Fee Applicable
+                    </h6>
+
+                    <img src="assets/brandlogs/coins.png" class="img-fluid coins" alt=""> <span
+                        class="coins-amount text-success">${{pledgePaymentPlanRequest.amount}}</span>
+
+                    <p class="font-weight-bold">
+                        <img src="assets/brandlogs/hourglass.png" class="my-hour-glass" alt=""> {{daysRemaining}} Days
+                        remaining to due
+                        date.
+                        <br> {{formatDate(pledgePaymentPlanRequest.eventDate)}}
+                    </p>
+
+
+
+
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-10 col-12 offset-md-1">
+
+
+                    <div class="row ">
+                        <div class="col-12 text-center">
+                            <div class="col-8 offset-2">
+                                <a href="javascript:void(0)">
+                                    <div class="card component-card_1 border-success ">
+                                        <div class="card-body mycustom-padding">
+                                            <div class="row">
+                                                <div class="col-12 text-center">
+                                                    <img src="assets/brandlogs/money-coins.jpg" class="money-coin"
+                                                        alt="">
+                                                </div>
+                                            </div>
+
+                                            <div class="row mt-3">
+                                                <div class="col-12 text-center">
+                                                    <span class="text-success pledge_amount">
+                                                        {{pledgePaymentPlanRequest.pledgePaymentPlanName}}
+                                                    </span>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row mt-3">
+                                                <div class="col-12 text-center">
+                                                    <span class="text-muted font-weight-bold">
+                                                        
+                                                    </span>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </div>
+                        <div class="col-12 margin_30 text-center">
+                            <h6 class="view_gift_header">
+                                Pay $1 Now
+                            </h6>
+                            <h6 class="view_gift_header">
+                                Pay ${{pledgePaymentPlanRequest.getAmountRegular()}}
+                                {{pledgePaymentPlanRequest.pledgePaymentPlanName}}
+                            </h6>
+                            <p class="font-weight-bold">
+
+                                From {{formatDate(pledgePaymentPlanRequest.startDate)}}
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-12 text-center my-3">
+                        <button (click)="editPaymentPlan()" class="btn btn-outline-success btn-sm">
+                            Edit
+                        </button>
+                        <button (click)="nextStep()" class="btn btn-success btn-sm">
+                            Confirm
+                        </button>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+<div class="card component-card_1 new_card" *ngIf="step===4">
+    <div class="card-body" style="font-weight: 500; color:black;">
+
+        <div class="row my-4">
+            <div class="col-12 text-center">
+                <h6 class="view_gift_header">
+                    Pledge Amount
+                </h6>
+
+                <img src="assets/brandlogs/coins.png" class="img-fluid coins" alt=""> <span
+                    class="coins-amount text-success">${{amount}}</span>
+
+
+            </div>
+        </div>
+
+
+        <div class="row mt-4">
+            <div class="col-md-10 offset-md-1">
+                <div class="row">
+                    <div class="col-12">
+                        <p>
+                            Select Pledge mode.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="row my-3">
+                    <div class="col-md-10">
+                        <div class="card component-card_1">
+                            <div class="card-body mycustom-padding">
+                                <div class="row">
+                                    <div class="col-2 gift-page1 font-weight-bold">
+                                        <i class="fa fa-eye-slash"></i>
+                                    </div>
+                                    <div class="col-6 Birthday2">
+                                        <p class="mode-p">
+                                            Private mode
+                                            <i ngbTooltip="In private mode, platform users cannot see the user user profile of the person who has gifted you however they can view the amount." class="fa fa-info-circle dark_2" data-container="body"
+                                                data-placement="top" data-html="true">
+
+                                            </i>
+                                        </p>
+                                    </div>
+
+                                    <div class="col-2">
+                                        <a href="javascript:void(0)" (click)="selectPledgeMode('PRIVATE')"> <i
+                                                class="fa fa-plus-circle text-success fa-3x float-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-md-10 ">
+                        <div class="card component-card_1">
+                            <div class="card-body mycustom-padding">
+                                <div class="row">
+                                    <div class="col-2 gift-page1 font-weight-bold">
+                                        <i class="fa fa-eye"></i>
+                                    </div>
+                                    <div class="col-6 Birthday2">
+                                        <p class="mode-p">
+                                            Public mode
+                                            <i ngbTooltip="In public mode, platform users can see the user profile and amount you have been gifted" class=" fa fa-info-circle dark_3" data-container="body"
+                                                data-placement="top" data-html="true">
+
+                                            </i>
+                                        </p>
+                                    </div>
+
+                                    <div class="col-2">
+                                        <a href="javascript:void(0)" (click)="selectPledgeMode('PUBLIC')"> <i
+                                                class="fa fa-plus-circle text-success fa-3x float-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card component-card_1 new_card" *ngIf="step===5">
+    <div class="card-body" style="font-weight: 500; color:black;">
+
+        <div class="row my-4">
+            <div class="col-12 text-center">
+                <h6 class="view_gift_header">
+                    Pledge Type
+                </h6>
+
+                <img src="assets/brandlogs/coins.png" class="img-fluid coins" alt=""> <span
+                    class="coins-amount text-success">${{amount}}</span>
+
+
+            </div>
+        </div>
+
+
+        <div class="row mt-4">
+            <div class="col-md-10 offset-md-1">
+                <div class="row">
+                    <div class="col-8">
+                        <p>
+                            Select Pledge type.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="row my-3">
+                    <div class="col-md-10">
+                        <div class="card component-card_1">
+                            <div class="card-body mycustom-padding">
+                                <div class="row">
+                                    <div class="col-2 gift-page1 font-weight-bold">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                    <div class="col-6 Birthday2">
+                                        <p class="mode-p">
+                                            One way pledge
+                                            <i ngbTooltip="One way pledge means that you do not have to pledge back" class=" fa fa-info-circle dark_5" data-container="body"
+                                                data-placement="top" data-html="true">
+
+                                            </i>
+                                        </p>
+                                    </div>
+
+                                    <div class="col-2">
+                                        <a href="javascript:void(0)" (click)="selectPledgeType('ONEWAY')"> <i
+                                                class="fa fa-plus-circle text-success fa-3x float-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-md-10">
+                        <div class="card component-card_1">
+                            <div class="card-body mycustom-padding">
+                                <div class="row">
+                                    <div class="col-2 gift-page1 font-weight-bold">
+                                        <img src="assets/brandlogs/two-way.png" style="width: 30px;" alt="">
+                                    </div>
+                                    <div class="col-6 Birthday2">
+                                        <p class="mode-p">
+                                            Two way pledge
+                                            <i ngbTooltip="Two way pledge means that you have to pledge back" class=" fa fa-info-circle dark_6" data-container="body"
+                                                data-placement="top" data-html="true">
+
+                                            </i>
+                                        </p>
+                                    </div>
+
+                                    <div class="col-2">
+                                        <a href="javascript:void(0)" (click)="selectPledgeType('TWOWAY')"> <i
+                                                class="fa fa-plus-circle text-success fa-3x float-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+
+<div  class="col-12 col-sm-12 col-md-12 mx-auto" *ngIf="step===6">
+    <div id="pay-invoice" class="card">
+        <div class="card-body">
+            <div class="card-title">
+                <h2 class="text-center">Payment Method </h2>
+            </div>
+            <hr>
+            <form action="" method="post" novalidate="novalidate">
+                <input type="hidden" id="x_first_name" name="x_first_name" value="">
+                <input type="hidden" id="x_last_name" name="x_last_name" value="">
+                <input type="hidden" id="x_card_num" name="x_card_num" value="">
+                <input type="hidden" id="x_exp_date" name="x_exp_date" value="">
+                <div class="form-group text-center">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><i class="text-muted fa fa-cc-visa fa-2x"></i></li>
+                        <li class="list-inline-item"><i class="fa fa-cc-mastercard fa-2x"></i></li>
+                        <li class="list-inline-item"><i class="fa fa-cc-amex fa-2x"></i></li>
+                        <li class="list-inline-item"><i class="fa fa-cc-discover fa-2x"></i></li>
+                    </ul>
+                </div>
+                <div class="form-group">
+                    <label>Payment amount</label>
+                    <h2>${{pledgePaymentPlanRequest.payNowAmount}}</h2>
+                </div>
+                <div class="form-group has-success">
+                    <label for="cc-name" class="control-label">Name on card</label>
+                    <input id="cc-name" name="cc-name" [(ngModel)]="card.name" type="text"
+                        class="form-control cc-name valid" data-val="true"
+                        data-val-required="Please enter the name on card" autocomplete="cc-name" aria-required="true"
+                        aria-invalid="false" aria-describedby="cc-name-error">
+                    <span class="help-block field-validation-valid" data-valmsg-for="cc-name"
+                        data-valmsg-replace="true"></span>
+                </div>
+                <div class="form-group">
+                    <label for="cc-number" class="control-label">Card number</label>
+                    <input id="cc-number" name="cc-number" [(ngModel)]="card.cardNumber" type="tel"
+                        class="form-control cc-number identified visa" value="" data-val="true"
+                        data-val-required="Please enter the card number"
+                        data-val-cc-number="Please enter a valid card number" autocomplete="cc-number">
+                    <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="cc-exp" class="control-label">Expiration</label>
+                            <input id="cc-exp" name="cc-exp" [(ngModel)]="card.expiration" type="tel"
+                                class="form-control cc-exp" value="" data-val="true"
+                                data-val-required="Please enter the card expiration"
+                                data-val-cc-exp="Please enter a valid month and year" placeholder="MM / YY"
+                                autocomplete="cc-exp">
+                            <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <label for="x_card_code" class="control-label">CVV</label>
+                        <div class="input-group">
+                            <input id="x_card_code" name="x_card_code" [(ngModel)]="card.cvv" type="tel"
+                                class="form-control cc-cvc" value="" data-val="true"
+                                data-val-required="Please enter the security code"
+                                data-val-cc-cvc="Please enter a valid security code" autocomplete="off">
+                            <div class="input-group-addon">
+                                <span class="fa fa-question-circle fa-lg" data-toggle="popover" data-container="body"
+                                    data-html="true" data-title="Security Code"
+                                    data-content="<div class='text-center one-card'>The 3 digit code on back of the card..<div class='visa-mc-cvc-preview'></div></div>"
+                                    data-trigger="hover"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <button (click)="setCard(true)" id="payment-button" type="button"
+                        class="btn btn-lg btn-success btn-block">
+                        <i class="fa fa-lock fa-lg"></i>&nbsp;
+                        <span id="payment-button-amount">Pay $1.00</span>
+                        <span id="payment-button-sending" style="display:none;">Sending…</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="card component-card_1 new_card" *ngIf="step===7">
+    <div class="card-body" style="font-weight: 500; color:black;">
+        <div class="row">
+            <div class="col-md-6 offset-md-2">
+                <h5>Confirm Transaction</h5>
+            </div>
+        </div>
+
+        <div class="row margin_45">
+
+            <div class="col-md-6 offset-md-2">
+                <input type="text" class="form-control" placeholder="enter code" [(ngModel)]="otp">
+            </div>
+
+
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-7 offset-md-2">
+                <a href="javascript:void(0)" (click)="setCard(false)">
+                    <p class="font-weight-bold">Did not get code? <b>Resend code</b></p>
+                </a>
+
+            </div>
+        </div>
+
+        <div class="row margin_50">
+
+            <div class="col-md-10 text-center">
+                <button (click)="confirm()" id="sample" class="btn btn-success">Confirm</button>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+<div class="card component-card_1 new_card" *ngIf="step===8">
+    <div class="card-body">
+
+        <div class="row my-4">
+
+            <div class="col-12 ">
+                <a href="javascript:void(0)" routerLink="/home">
+                    <i class="fa fa-times float-right mr-4"></i>
+                </a>
+            </div>
+
+        </div>
+        <div class="row" style="margin-top: 100px;">
+            <div class="col-12 text-center">
+
+                <img src="assets/brandlogs/success.png" class="img-fluid success" alt="">
+                <h5 class="started_heading mt-4">
+                    {{log.shopper.firstName}} {{log.shopper.lastName}} has received ${{amount}} from your pledge amount
+                </h5>
+            </div>
+        </div>
+
+    </div>
+</div>

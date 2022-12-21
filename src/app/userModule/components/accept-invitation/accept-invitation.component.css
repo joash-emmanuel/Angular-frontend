@@ -1,0 +1,24 @@
+.container {
+    max-width: 450px;
+}
+
+.activitiesHeader {
+    overflow: hidden;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    max-width: 450px;
+    z-index: 1;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+.birthdayActivityImg {
+    max-width: 400px;
+    object-fit: contain !important;
+}
+
+.fit-content {
+    width: fit-content;
+}

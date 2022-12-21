@@ -1,0 +1,100 @@
+<div class="row">
+    <div class="col-12">
+        <div class="row">
+            <div class="col-12">
+                <a href="javascript:void(0)" routerLink="/admin/manage">
+                    <h3><i class="fa fa-long-arrow-left"></i></h3>
+                </a>
+            </div>
+            <div class="col-8 text-right">
+                <h3>Manage Users</h3>
+            </div>
+            <div class="col-4">
+                <div class="text-right">
+                    <button (click)="add(formModal)" class="btn btn-outline-success">Invite user</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 mt-3">
+        <table class="table table-striped table-responsive">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let adminUser of adminUsers">
+                    <td>
+                        {{adminUser.id}}
+                    </td>
+                    <td>
+                        <button class="btn btn-link" (click)="edit(adminUser,formModal)">{{adminUser.firstName}}
+                            {{adminUser.lastName}}</button>
+                    </td>
+                    <td>
+                        {{adminUser.email}}
+                    </td>
+                    <td class="text-right">
+                        <button (click)="delete(adminUser,deleteModal)" class="btn btn-sm btn-default">
+                            <i class="fa fa-trash text-danger"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<ng-template #formModal let-modal>
+
+    <div class="modal-header">
+        <h5 class="modal-title">Admin User</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form action="">
+            <div class="form-group">
+                <label for="" class="form-label">First Name</label>
+                <input name="firstName" [(ngModel)]="adminUser.firstName" type="text" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="" class="form-label">Last Name</label>
+                <input name="lastName" [(ngModel)]="adminUser.lastName" type="text" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="" class="form-label">Email</label>
+                <input name="email" [(ngModel)]="adminUser.email" type="email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="" class="form-label">Password</label>
+                <input name="password" [(ngModel)]="adminUser.password" type="password" class="form-control" />
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" (click)="submitForm()">Save</button>
+    </div>
+</ng-template>
+
+<ng-template #deleteModal let-modal>
+
+    <div class="modal-header">
+        <h5 class="modal-title">Delete Admin User</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        Delete admin user {{deleteAdminUser.firstName}} {{deleteAdminUser.lastName}}?
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" (click)="submitDelete()">Delete</button>
+    </div>
+</ng-template>

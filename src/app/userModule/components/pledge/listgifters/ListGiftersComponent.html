@@ -1,0 +1,67 @@
+<div class="card component-card_1 new_card">
+    <div class="card-body">
+
+        <div class="row my-4">
+            <div class="col-11 text-center">
+                <h6 class="view_gift_header">
+                    TOTAL AMOUNT
+                </h6>
+
+                <img src="assets/brandlogs/coins.png" class="img-fluid coins" alt=""> <span
+                    class="coins-amount text-success">${{total}}</span>
+            </div>
+
+            <div class="col-1 float-right close_icon_invite_2">
+                <a routerLink="/home"> <i class="fa fa-times-circle-o fa-2x "></i></a>
+            </div>
+        </div>
+
+        <div class="row my-4">
+            <div class="col-12 text-right">
+
+                <button (click)="addGift()" class="btn btn-success">
+                    Add Gift
+                </button>
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+
+                    <div class="table-responsive" style="overflow-y: scroll; height: 300px;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="td_gift_page">Gifters </th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr *ngFor="let pledge of pledges">
+                                    <td class="td_gift_page"><a routerLink="/profile/profile/{{pledge.log.shopper.id}}"> <img
+                                                src="{{configService.getServerUrl()+[pledge.shopper.profilePicUrl]}}" class="mr-4 table-img"
+                                                alt=""></a> <span class="table-text">{{pledge.shopper.firstName}}
+                                            {{pledge.shopper.lastName}}</span></td>
+                                    <td>
+                                        <span class="badge badge-grey">
+                                            ${{pledge.amount}}
+                                        </span>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>

@@ -1,0 +1,95 @@
+<div class="row" *ngIf="user">
+    <div class="col-12">
+        <div class="widget widget-chart-three">
+            <div class="widget-content animated-underline-content widget-content-area">
+                <div id="uniqueVisits">
+
+
+                    <div class="row margin_47">
+                        <div class="col-12 text-center ">
+                            <p class="shoppers_heading">BALANCE</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 offset-md-3 text-center mb-3">
+                            <div
+                                style="border: 2px solid #dddddd; border-left:hidden;border-top:hidden;border-bottom:hidden;">
+                                <p class="shoppers_heading">Current</p>
+                                <h5 class="wallet_money text-success margin_30">
+                                    ${{balance.current}}
+                                </h5>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-3 text-center">
+                            <p class="shoppers_heading">Available</p>
+                            <h5 class="wallet_money text-success margin_30">
+                                ${{balance.available}}
+                            </h5>
+
+
+                        </div>
+                    </div>
+                    <div class="row my-4">
+                        <div class="col-12 text-center">
+                            <a (click)="walletActivated(['wallet','details'])"
+                                class="btn btn-outline-success view-more mb-4 ">VIEW MORE</a>
+                            <a (click)="transferBalance(['wallet','transfer'])"
+                                class="btn btn-success view-more mb-4">Transfer Balance</a>
+
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row" *ngIf="!user">
+    <div class="col-12">
+        <div class="widget widget-chart-three">
+            <div class="widget-content animated-underline-content widget-content-area">
+                <div id="uniqueVisits">
+
+
+                    <div class="row text-center">
+
+
+
+                        <div class="col-12 margin_45">
+                            <button (click)="acceptInvitation()" class="btn btn-success btn-lg">
+                                ACCEPT INVITATION
+                            </button>
+
+                        </div>
+                        <div class="col-12 margin_45">
+                            <h5>Or</h5>
+                        </div>
+                        <div class="col-12 margin_45">
+                            <button (click)="login()" class="btn btn-outline-success btn-lg">
+                                Log in
+                            </button>
+
+                        </div>
+                        <div class="col-12  margin_30">
+                            <h5>To Create your wallet</h5>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>

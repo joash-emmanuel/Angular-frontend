@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card component-card_1 new_card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-10 text-center">
+
+                            <label class="form-label-mine" for="">Edit your profile photo</label>
+                        </div>
+                        <div class="col-2 float-right close_icon_invite_1">
+                            <a routerLink="/profile/profile"> <i class="fa fa-times-circle-o fa-2x "></i></a>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-6 offset-3">
+                            <div class="b-logo d-flex align-items-center">
+                                <img src="{{shopper.profilePicUrl.substring(0,4)==='data'?shopper.profilePicUrl:configService.getServerUrl()+shopper.profilePicUrl}}"
+                                    class="" style="width:100px;margin-top:50px">
+                            </div>
+
+                            <label for="profilePicFileInput">
+                                <i class="fa fa-edit edit-icon" style="margin-left:-5px"></i>
+                            </label>
+
+                        </div>
+                        <input (change)="profilePicInputChange($event)" type="file" style="visibility:hidden"
+                            id="profilePicFileInput" />
+                    </div>
+
+
+                    <div class="row mt-4">
+                        <div class="col-12 text-center">
+                            <div class="row">
+                                <div class="col-6 offset-md-3">
+
+                                    <label class="form-label-mine" for="">Edit your name</label>
+                                </div>
+                            </div>
+
+                            <div class="row mb-4">
+
+                                <div class="col-6 mt-3">
+                                    <input [(ngModel)]="shopper.firstName" type="text" placeholder="First name"
+                                        class="form-control" />
+                                </div>
+
+                                <div class="col-6 mt-3">
+                                    <input [(ngModel)]="shopper.lastName" type="text" placeholder="Last name"
+                                        class="form-control">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+
+
+                        <div class="col-12 text-center ">
+                            <button (click)="save()" class="btn btn-success">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

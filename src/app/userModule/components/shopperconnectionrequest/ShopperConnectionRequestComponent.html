@@ -1,0 +1,204 @@
+<div class="container" *ngIf="step===1">
+    <div class="row">
+        <div class="col-md-12 ">
+            <div class="card component-card_1">
+                <div class="card-body">
+
+                    <div class="row my-4">
+                        <div class="col-12 text-center">
+                            <h5 class="started_heading">
+                                Care Shopper
+                            </h5>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row mb-4">
+                        <div class="col-12 text-center">
+                            <img src="{{configService.getServerUrl()+shopper!?.profilePicUrl}}" alt="" class="img-fluid started_image">
+                            <h6 class="mt-2">{{shopper!?.firstName}} {{shopper!?.lastName}}</h6>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <p class="paragraph_accepted">
+                                Let us know your connection value
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <!-- start of the cards below -->
+
+                    <div class="row mt-4">
+                        <div class="col-md-10 offset-md-1">
+
+                            <div class="row my-3" *ngFor="let shopperConnectionValue of shopperConnectionValues">
+                                <div class="col-12">
+
+                                    <div class="card component-card_1">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-sm-2 col-1 text-center">
+
+                                                    <i class="fa fa-users fa-3x brand-image" aria-hidden="true"></i>
+                                                </div>
+                                                <div class="col-sm-8 col-7 text-center">
+                                                    <h5 class="mt-3">
+                                                        <b>{{shopperConnectionValue.text}}</b>
+                                                    </h5>
+                                                </div>
+
+                                                <div class="col-sm-2 col-1 text-center">
+                                                    <a (click)="selectShopperConnectionValue(shopperConnectionValue)"
+                                                        href="javascript:void(0)"> <i
+                                                            class="fa fa-plus-circle text-success fa-3x brand-image"></i></a>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="container" *ngIf="step===2">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card component-card_1">
+                <div class="card-body">
+
+                    <!-- start of the cards below -->
+
+                    <div class="row mt-4">
+                        <div class="col-md-10 offset-md-1">
+                            <div class="row">
+                                <div class="col-10   text-center">
+                                    <p style="font-size:16px" class="chat-online">
+                                        <b>YOUR SHOPPER CONNECTION VALUE</b>
+                                    </p>
+                                </div>
+
+
+
+                            </div>
+                            <div class="row my-4">
+
+                                <div class="col-md-2">
+
+                                    <img src="{{configService.getServerUrl()+shopper!?.profilePicUrl}}" alt="" class="img-fluid started_image" />
+
+                                </div>
+                                <div class="col-md-5 text-center mt-4">
+                                    <h5>{{shopper!?.firstName}} {{shopper!?.lastName}}</h5>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="row my-3">
+                                <div class="col-12">
+
+                                    <div class="card component-card_1">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-2 col-1">
+                                                    <i class="fa fa-users fa-3x brand-image" aria-hidden="true"></i>
+                                                </div>
+                                                <div class="col-md-8 col-7">
+                                                    <h5 class="mt-3">
+                                                        <b>{{shopperConnectionValue.text}}</b>
+                                                    </h5>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                            <div class="row my-3 float-right">
+
+                                <div class="col-md-12 col-sm-12">
+                                    <button (click)="edit()" class="btn btn-outline-success  mr-2">
+                                        Edit
+                                    </button>
+
+                                    <button (click)="confirm()" class="btn btn-success  float-right">
+                                        Send Invite
+                                    </button>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="container" *ngIf="step===3">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card component-card_1 new_card">
+                <div class="card-body">
+
+                    <div class="row my-4">
+
+                        <div class="col-12 ">
+                            <a routerLink="/home">
+                                <i class="fa fa-times float-right mr-4"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                    <div class="row" style="margin-top: 100px;">
+                        <div class="col-12 text-center">
+
+                            <img src="assets/brandlogs/success.png" class="img-fluid success" alt="">
+                            <h5 class="started_heading mt-4">
+                                Your shopper connection request has been sent
+                            </h5>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

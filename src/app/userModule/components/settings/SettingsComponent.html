@@ -1,0 +1,52 @@
+<!--  BEGIN NAVBAR  -->
+<div class="header-container">
+    <brandlogs-header></brandlogs-header>
+</div>
+<div class="main-container" id="container">
+
+    <!--  BEGIN CONTENT PART  -->
+    <div class="container">
+        <div id="content" class="main-content">
+            <div class="">
+                <div class="row layout-top-spacing">
+                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 d-none d-lg-block">
+                        <div class="widget widget-mine widget-activity-three">
+                            <div class="widget-content">
+                                <div class="mt-container mx-auto">
+                                    <div class="timeline-line" settings-menu>
+                                        <settings-menu></settings-menu>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 text-center d-lg-none" style="padding: 0;">
+                        <settings-menu></settings-menu>
+                    </div>
+                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-10 col-10">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-1 ">
+                                        <a routerLink="/home">
+                                            <i class="fa fa-arrow-left mt-4" style="margin-left:-305px"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="card component-card_1 new_card" style="height:510px;">
+                                    <div class="card-body">
+                                        <div class="tab-content mr-4">
+                                            <router-outlet></router-outlet>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

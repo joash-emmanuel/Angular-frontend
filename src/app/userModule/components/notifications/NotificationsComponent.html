@@ -1,0 +1,179 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="widget widget-chart-three" style="width: 100%;">
+            <div class="widget-content animated-underline-content widget-content-area">
+                <div id="uniqueVisits">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav nav-tabs nav-fill mb-3"
+                                id="animateLine" role="tablist">
+                                <li [ngbNavItem]="1" class="nav-item">
+                                    <a ngbNavLink>Logs</a>
+                                    <ng-template ngbNavContent>
+                                        <div class="container-fluid">
+                                            <div class="row" *ngIf="logsNotifications.length===0">
+                                                <div class="col-12  text-center">
+                                                    <i class="fa fa-bell-o fa-2x"></i>
+                                                    <p>You have 0 notifications</p>
+                                                </div>
+                                            </div>
+                                            <div class="row" *ngFor="let logsNotification of logsNotifications">
+                                                <div class="col-2 col-md-2">
+                                                    <a href="">
+                                                        <!--                                                    <img src="{{configService.getServerUrl()+logsNotification.log.}}" class="wallet-img"
+                                                        alt="">
+                                                -->
+                                                    </a>
+                                                    <span class="badge badge-success pill-cirlce"> </span>
+                                                </div>
+                                                <div class="col-10 col-md-8 col-10 col-md-8 notification_relative_left">
+                                                    <p class="p-class-1">{{logsNotification.message}}
+                                                    </p>
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <a routerLink="/repost/{{logsNotification.logPost.id}}"
+                                                                class="btn btn-success badge-sm">
+                                                                Repost
+                                                            </a>
+                                                        </div>
+                                                        <p class="text-muted-mobile float-right">
+                                                            {{timeAgo(logsNotification.created)}}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-2 text-center">
+                                                    <p class="text-muted">
+                                                        {{timeAgo(logsNotification.created)}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </li>
+                                <li [ngbNavItem]="2" class="nav-item">
+                                    <a ngbNavLink>Wallet</a>
+                                    <ng-template ngbNavContent>
+                                        <div class="row" *ngIf="walletNotifications.length===0">
+                                            <div class="col-12  text-center">
+                                                <i class="fa fa-bell-o fa-2x"></i>
+                                                <p>you have 0 notifications</p>
+                                            </div>
+                                        </div>
+                                        <div class="row" *ngFor="let walletNotification of walletNotifications">
+                                            <div class="col-2 col-md-2">
+                                                <a routerLink="/profile/profile/{{walletNotification.pledge.shopper.id}}"
+                                                    *ngIf="walletNotification.pledge.log.shopper.id===loggedInShopper.id">
+                                                    <img src="{{configService.getServerUrl()+walletNotification.pledge.shopper.profilePicUrl}}"
+                                                        class="wallet-img" alt="">
+                                                </a>
+                                                <a routerLink="/profile/profile/{{walletNotification.pledge.log.shopper.id}}"
+                                                    *ngIf="walletNotification.pledge.shopper.id===loggedInShopper.id">
+                                                    <img src="{{configService.getServerUrl()+walletNotification.pledge.log.shopper.profilePicUrl}}"
+                                                        class="wallet-img" alt="">
+                                                </a>
+                                                <span class="badge badge-success pill-cirlce"> </span>
+                                            </div>
+                                            <div class="col-10 col-md-8 col-10 col-md-8 notification_relative_left">
+                                                <p class="p-class-1">{{walletNotification.message}}</p>
+                                                <p class="p-class"> <b>Gift Type</b>
+                                                    :{{walletNotification.pledge.pledgeType}}<br>
+                                                    <b>Gift Mode</b> : {{walletNotification.pledge.pledgeMode}}
+                                                </p>
+
+                                                <div class="row">
+                                                    <div class="col-12 col-md-12"
+                                                        *ngIf="walletNotification.pledge.log.shopper.id===loggedInShopper.id && !walletNotification.pledge.accepted && pledgeType(walletNotification.pledge)==='TWOWAY'">
+                                                        <button (click)="accept2WayPledge(walletNotification.pledge)"
+                                                            class="btn btn-success badge-sm">Accept</button>
+
+                                                        <button (click)="reject2WayPledge(walletNotification.pledge.id)"
+                                                            class="btn btn-outline-success badge-sm">Delete</button>
+                                                    </div>
+                                                    <div class="col-12 col-md-12"
+                                                        *ngIf="walletNotification.pledge.shopper.id===loggedInShopper.id && !walletNotification.pledge.accepted && pledgeType(walletNotification.pledge)==='TWOWAY'">
+                                                        <button (click)="cancelPledge(walletNotification.pledge)"
+                                                            class="btn btn-outline-success badge-sm">Cancel</button>
+                                                    </div>
+                                                    <p class="text-muted-mobile float-right">
+                                                        {{timeAgo(walletNotification.created)}}
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <p class="text-muted">
+                                                    {{timeAgo(walletNotification.created)}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </li>
+                                <li [ngbNavItem]="3" class="nav-item">
+                                    <a ngbNavLink>Connects</a>
+                                    <ng-template ngbNavContent>
+                                        <div class="row text-center" *ngIf="connectsNotifications.length===0">
+                                            <div class="col-12">
+                                                <i class="fa fa-bell-o fa-2x"></i>
+                                                <p>you have 0 notifications</p>
+                                            </div>
+                                        </div>
+                                        <div class="row" *ngFor="let connectNotification of connectsNotifications">
+                                            <div class="col-2">
+                                                <a routerLink="/profile/profile/{{connectNotification.connectionRequest.requester.id}}"
+                                                    *ngIf="connectNotification.shopper.id===connectNotification.connectionRequest.recipient.id">
+                                                    <img src="{{configService.getServerUrl()+connectNotification.connectionRequest.requester.profilePicUrl}}"
+                                                        class="wallet-img" alt="">
+                                                </a>
+                                                <a routerLink="/profile/profile/{{connectNotification.connectionRequest.recipient.id}}"
+                                                    *ngIf="connectNotification.shopper.id===connectNotification.connectionRequest.requester.id">
+                                                    <img src="{{configService.getServerUrl()+connectNotification.connectionRequest.recipient.profilePicUrl}}"
+                                                        class="wallet-img" alt="">
+                                                </a>
+                                                <span class="badge badge-success pill-cirlce"> </span>
+                                            </div>
+                                            <div class="col-6 col-10 col-md-8 notification_relative_left">
+                                                <p class="p-class-1">
+                                                    {{connectNotification.message}}
+                                                </p>
+                                                <p class="p-class"><b>Connection value </b> :
+                                                    {{connectNotification.connectionRequest.shopperConnectionValue.text}}
+                                                </p>
+                                                <div class="row">
+                                                    <div class="col-12"
+                                                        *ngIf="connectNotification.shopper.id===connectNotification.connectionRequest.recipient.id && !connectNotification.connectionRequest.accepted">
+                                                        <button (click)="acceptConnectionRequest(connectNotification)"
+                                                            class="btn btn-success btn-sm badge-sm">Confirm</button>
+                                                        <button (click)="rejectConnectionRequest(connectNotification)"
+                                                            class="btn btn-outline-success btn-sm badge-sm">Delete</button>
+                                                    </div>
+                                                    <div class="col-12"
+                                                        *ngIf="connectNotification.shopper.id===connectNotification.connectionRequest.requester.id && !connectNotification.connectionRequest.accepted">
+                                                        <button (click)="cancelConnectionRequest(connectNotification)"
+                                                            class="btn btn-outline-success btn-sm badge-sm">Cancel</button>
+                                                    </div>
+                                                    <p class="text-muted-mobile float-right">
+                                                        {{timeAgo(connectNotification.created)}}</p>
+                                                </div>
+
+                                            </div>
+                                            <!-- <div class="col-2 text-center">
+                                                <i class="fa fa-ellipsis-v"></i>
+                                            </div> -->
+                                            <div class="col-3 text-center">
+                                                <p class="text-muted">
+                                                    {{timeAgo(connectNotification.created)}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </li>
+                            </ul>
+                            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

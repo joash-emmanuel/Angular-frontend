@@ -1,0 +1,157 @@
+<div class="row margin_50">
+    <div class="col-12">
+        <div class="widget widget-chart-three">
+            <div class="widget-content animated-underline-content widget-content-area">
+                <div id="uniqueVisits">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav nav-tabs nav-fill mb-3"
+                                id="animateLine" role="tablist">
+                                <li [ngbNavItem]="1" class="nav-item">
+                                    <a ngbNavLink>{{preChats.length}} PRE-CHATS</a>
+                                    <ng-template ngbNavContent>
+                                        <div class="shadow p-4">
+                                            <div class="row" *ngFor="let chat of preChats">
+                                                <div class="col-12 col-lg-2 col-xl-2">
+                                                    <a routerLink="/profile/profile/{{chat.sender.id}}">
+                                                        <img src="{{configService.getServerUrl()+chat.sender.profilePicUrl}}"
+                                                            class="rounded-circle mr-1"
+                                                            alt="{{chat.sender.firstName}} {{chat.sender.lastName}}"
+                                                            width="40" height="40">
+                                                    </a>
+                                                </div>
+                                                <div class="col-12 col-lg-10 col-xl-10 bg-light">
+                                                    <div class="col-12 font-weight-bold">
+                                                        {{chat.sender.firstName}} {{chat.sender.lastName}}
+                                                    </div>
+                                                    <div class="col-12">{{chat.text}}</div>
+                                                    <div class="col-12 text-right">{{timeAgo(chat.created)}}
+                                                    </div>
+                                                </div>
+                                                <!--
+                                                <div
+                                                    class="col-6 col-lg-2 offset-lg-8 col-xl-2 offset-xl-8 text-success font-weight-bold small text-right">
+                                                    0 chat backs
+                                                </div>
+                                                <div
+                                                    class="col-6 col-lg-2 col-xl-2 text-warning font-weight-bold font small text-right">
+                                                    Chat back</div>
+                                            -->
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 flex-grow-0 py-3 px-4 border-top">
+                                                    <div class="input-group">
+                                                        <textarea id="textarea" class="form-control textarea"
+                                                            maxlength="120" rows="1"
+                                                            
+                                                            [(ngModel)]="text"></textarea>
+
+                                                        <button (click)="send()" class="btn btn-success">Send</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </li>
+                                <li [ngbNavItem]="2" class="nav-item">
+                                    <a ngbNavLink>{{liveChats.length}} LIVE-CHATS</a>
+                                    <ng-template ngbNavContent>
+                                        <div class="shadow p-4">
+                                            <div class="row" *ngFor="let chat of liveChats">
+                                                <div class="col-12 col-lg-2 col-xl-2">
+                                                    <a routerLink="/profile/profile/{{chat.sender.id}}">
+                                                        <img src="{{configService.getServerUrl()+chat.sender.profilePicUrl}}"
+                                                            class="rounded-circle mr-1"
+                                                            alt="{{chat.sender.firstName}} {{chat.sender.lastName}}"
+                                                            width="40" height="40">
+                                                    </a>
+                                                </div>
+                                                <div class="col-12 col-lg-10 col-xl-10 bg-light">
+                                                    <div class="col-12 font-weight-bold">
+                                                        {{chat.sender.firstName}} {{chat.sender.lastName}}
+                                                    </div>
+                                                    <div class="col-12">{{chat.text}}</div>
+                                                    <div class="col-12 text-right">{{timeAgo(chat.created)}}
+                                                    </div>
+                                                </div>
+                                                <!--
+                                                <div
+                                                    class="col-6 col-lg-2 offset-lg-8 col-xl-2 offset-xl-8 text-success font-weight-bold small text-right">
+                                                    0 chat backs
+                                                </div>
+                                                <div
+                                                    class="col-6 col-lg-2 col-xl-2 text-warning font-weight-bold font small text-right">
+                                                    Chat back</div>
+                                            -->
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 flex-grow-0 py-3 px-4 border-top">
+                                                    <div class="input-group">
+                                                        <textarea id="textarea" class="form-control textarea"
+                                                            maxlength="120" rows="1"
+                                                            
+                                                            [(ngModel)]="text"></textarea>
+
+                                                        <button  (click)="send()" class="btn btn-success">Send</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </li>
+
+                                <li [ngbNavItem]="3" class="nav-item">
+                                    <a ngbNavLink>{{postChats.length}} POST-CHATS</a>
+                                    <ng-template ngbNavContent>
+                                        <div class="shadow p-4">
+                                            <div class="row" *ngFor="let chat of postChats">
+                                                <div class="col-12 col-lg-2 col-xl-2">
+                                                    <a routerLink="/profile/profile/{{chat.sender.id}}">
+                                                        <img src="{{configService.getServerUrl()+chat.sender.profilePicUrl}}"
+                                                            class="rounded-circle mr-1"
+                                                            alt="{{chat.sender.firstName}} {{chat.sender.lastName}}"
+                                                            width="40" height="40">
+                                                    </a>
+                                                </div>
+                                                <div class="col-12 col-lg-10 col-xl-10 bg-light">
+                                                    <div class="col-12 font-weight-bold">
+                                                        {{chat.sender.firstName}} {{chat.sender.lastName}}
+                                                    </div>
+                                                    <div class="col-12">{{chat.text}}</div>
+                                                    <div class="col-12 text-right">{{timeAgo(chat.created)}}
+                                                    </div>
+                                                </div>
+                                                <!--
+                                                <div
+                                                    class="col-6 col-lg-2 offset-lg-8 col-xl-2 offset-xl-8 text-success font-weight-bold small text-right">
+                                                    0 chat backs
+                                                </div>
+                                                <div
+                                                    class="col-6 col-lg-2 col-xl-2 text-warning font-weight-bold font small text-right">
+                                                    Chat back</div>
+                                            -->
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12 flex-grow-0 py-3 px-4 border-top">
+                                                    <div class="input-group">
+                                                        <textarea id="textarea" class="form-control textarea"
+                                                            maxlength="120" rows="1"
+                                                            
+                                                            [(ngModel)]="text"></textarea>
+
+                                                        <button (click)="send()" class="btn btn-success">Send</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </li>
+                            </ul>
+                            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

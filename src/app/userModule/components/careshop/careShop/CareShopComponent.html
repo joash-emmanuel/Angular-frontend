@@ -1,0 +1,97 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <mat-tab-group>
+                <mat-tab label="Your Bookings">
+                    <div class="row">
+                        <div class="col-6">
+                            <div>
+                                <img src="" alt="" width="200px" height="200px" class="bg-light" />
+                            </div>
+                            <div class="bg-light">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <img src="" alt="" class="bg-light circle" />
+                                    </div>
+                                    <div class="col-9">
+                                        Kempinski
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div>
+                                <img src="" alt="" width="200px" height="200px" class="bg-light" />
+                            </div>
+                            <div class="bg-light">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <img src="" alt="" class="bg-light circle" />
+                                    </div>
+                                    <div class="col-9">
+                                        Kempinski
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Incoming Bookings" *ngIf="isBrand" >
+                    <div class="row">
+                        <div class="col-2">
+                            <div class="circle bg-light"></div>
+                        </div>
+                        <div class="col-10">
+                            <div class="row">
+                                <div class="col-6">
+                                    <a routerLink="/careshop/accept" class="btn btn-success">
+                                        ACCEPT
+                                    </a>
+                                </div>
+                                <div class="col-6">
+                                    <a routerLink="/careshop/decline" class="btn btn-outline-warning">
+                                        DECLINE
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Other Listings">
+                    <div class="row">
+                        <div class="col-6">
+                            <div>
+                                <img src="" alt="" width="200px" height="200px" class="bg-light" />
+                            </div>
+                            <div class="bg-light">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <img src="" alt="" class="bg-light circle" />
+                                    </div>
+                                    <div class="col-9">
+                                        Kempinski
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div>
+                                <img src="" alt="" width="200px" height="200px" class="bg-light" />
+                            </div>
+                            <div class="bg-light">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <img src="" alt="" class="bg-light circle" />
+                                    </div>
+                                    <div class="col-9">
+                                        Kempinski
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

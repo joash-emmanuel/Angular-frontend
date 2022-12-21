@@ -1,0 +1,411 @@
+<div class="col-md-12" *ngIf="step===1">
+    <div class="card component-card_1 new_card">
+        <div class="card-body" style="font-weight: 500; color:black;">
+
+            <div class="row my-4">
+                <div class="col-12 text-center">
+                    <h6 class="view_gift_header">
+                        One Time Fee Applicable
+                    </h6>
+
+                    <img src="assets/brandlogs/coins.png" class="img-fluid coins" alt=""> <span
+                        class="coins-amount text-success">$75</span>
+
+                    <p class="font-weight-bold">
+                        <img src="assets/brandlogs/hourglass.png" class="my-hour-glass" alt="">
+                        {{noOfDays}} Days remaining to due date.
+                        <br>
+                        {{dueDateFormatted}}
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="row mt-4">
+                <div class="col-md-10 col-12 offset-md-1">
+                    <div class="row">
+                        <div class="col-8">
+                            <p class="font-weight-bold" style="color: black">
+                                Select payment plan.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col-md-4 mb-2">
+                            <a href="javascript:void(0)" (click)="selectPaymentPlan('daily')">
+                                <div class="card component-card_1 border-success ">
+                                    <div class="card-body mycustom-padding">
+                                        <div class="row">
+                                            <div class="col-12 text-center">
+                                                <img src="assets/brandlogs/money-coins.jpg" class="money-coin" alt="">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="col-12 text-center">
+                                                <span class="text-success pledge_amount">
+                                                    Daily
+                                                </span>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row mt-3">
+                                            <div class="col-12 text-center">
+                                                <span class="text-muted font-weight-bold">
+                                                    Daily
+                                                </span>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <a href="javascript:void(0)" (click)="selectPaymentPlan('weekly')">
+                                <div class="card component-card_1 border-success ">
+                                    <div class="card-body mycustom-padding">
+                                        <div class="row">
+                                            <div class="col-12 text-center">
+                                                <img src="assets/brandlogs/money-coins.jpg" class="money-coin" alt="">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="col-12 text-center">
+                                                <span class="text-success pledge_amount">
+                                                    Weekly
+                                                </span>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row mt-3">
+                                            <div class="col-12 text-center">
+                                                <span class="text-muted font-weight-bold">
+                                                    Weekly
+                                                </span>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+
+                        <div class="col-md-4 mb-2">
+                            <a href="javascript:void(0)" (click)="selectPaymentPlan('duedate')">
+                                <div class="card component-card_1 border-success ">
+                                    <div class="card-body mycustom-padding">
+                                        <div class="row">
+                                            <div class="col-12 text-center">
+                                                <img src="assets/brandlogs/money-coins.jpg" class="money-coin" alt="">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="col-12 text-center">
+                                                <span class="text-success pledge_amount">
+                                                    Pay Due Date
+                                                </span>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row mt-3">
+                                            <div class="col-12 text-center">
+                                                <span class="text-muted font-weight-bold">
+                                                    Pay Due Date
+                                                </span>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container" *ngIf="step===2">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card component-card_1 new_card_1">
+                <div class="card-body" style="font-weight: 500; color:black;">
+
+                    <div class="row my-4">
+                        <div class="col-12 text-center">
+                            <h5 class="view_gift_header">
+                                Payment Plan Review
+                            </h5>
+
+                            <h6 class="view_gift_header">
+                                One Time Fee Applicable
+                            </h6>
+
+                            <img src="assets/brandlogs/coins.png" class="img-fluid coins" alt=""> <span
+                                class="coins-amount text-success">${{paymentPlan!?.totalAmount}}</span>
+
+                            <p class="font-weight-bold">
+                                <img src="assets/brandlogs/hourglass.png" class="my-hour-glass" alt="">
+                                {{paymentPlan!?.noOfDays}} Days
+                                remaining to due
+                                date.
+                                <br> {{formatDate(paymentPlan!?.dueDate)}}
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-10 col-12 offset-md-1">
+                            <div class="row ">
+                                <div class="col-12 text-center">
+
+                                    <div class="col-8 offset-2">
+
+                                        <div class="card component-card_1 border-success ">
+                                            <div class="card-body mycustom-padding">
+                                                <div class="row">
+                                                    <div class="col-12 text-center">
+                                                        <img src="assets/brandlogs/money-coins.jpg" class="money-coin"
+                                                            alt="">
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mt-3">
+                                                    <div class="col-12 text-center">
+                                                        <span class="text-success pledge_amount">
+                                                            {{paymentPlan!?.name}}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-12 text-center">
+                                                        <span class="text-muted font-weight-bold">
+                                                            {{paymentPlan!?.name}}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 margin_30 text-center">
+                                    <h6 class="view_gift_header">
+                                        Pay ${{paymentPlan!?.amountNow}} Now
+                                    </h6>
+                                    <h6 class="view_gift_header" *ngIf="paymentPlan.amountRegular">
+                                        Pay ${{paymentPlan!?.amountRegular!?.toFixed(2)}} {{paymentPlan!?.name}}
+                                    </h6>
+                                    <p class="font-weight-bold">
+                                        From {{formatDate(paymentPlan!?.startDate)}}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-12 text-center my-3">
+                                <a (click)="edit()" href="javascript:void(0)" class="btn btn-outline-success btn-sm">
+                                    Edit
+                                </a>
+                                <a (click)="confirmPaymentPlan()" href="javascript:void(0)"
+                                    class="btn btn-success btn-sm">
+                                    Confirm
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="step===3">
+    <div class="col-12 col-sm-8 col-md-12 mx-auto">
+        <div id="pay-invoice" class="card">
+            <div class="card-body">
+                <div class="card-title">
+                    <h2 class="text-center">Payment Method </h2>
+                </div>
+                <hr>
+                <form action="" method="post" novalidate="novalidate">
+                    <input type="hidden" id="x_first_name" name="x_first_name" value="">
+                    <input type="hidden" id="x_last_name" name="x_last_name" value="">
+                    <input type="hidden" id="x_card_num" name="x_card_num" value="">
+                    <input type="hidden" id="x_exp_date" name="x_exp_date" value="">
+                    <div class="form-group text-center">
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><i class="text-muted fa fa-cc-visa fa-2x"></i></li>
+                            <li class="list-inline-item"><i class="fa fa-cc-mastercard fa-2x"></i></li>
+                            <li class="list-inline-item"><i class="fa fa-cc-amex fa-2x"></i></li>
+                            <li class="list-inline-item"><i class="fa fa-cc-discover fa-2x"></i></li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label>Payment amount</label>
+                        <h2>$5</h2>
+                    </div>
+                    <div class="form-group has-success">
+                        <label for="cc-name" class="control-label">Name on card</label>
+                        <input id="cc-name" name="cc-name" type="text" class="form-control cc-name valid"
+                            data-val="true" data-val-required="Please enter the name on card" autocomplete="cc-name"
+                            aria-required="true" aria-invalid="false" aria-describedby="cc-name-error"
+                            [(ngModel)]="cardDetailsRequest.name" />
+                        <span class="help-block field-validation-valid" data-valmsg-for="cc-name"
+                            data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="cc-number" class="control-label">Card number</label>
+                        <input id="cc-number" name="cc-number" type="tel" class="form-control cc-number identified visa"
+                            value="" data-val="true" data-val-required="Please enter the card number"
+                            data-val-cc-number="Please enter a valid card number" autocomplete="cc-number"
+                            [(ngModel)]="cardDetailsRequest.cardNumber" />
+                        <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="cc-exp" class="control-label">Expiration</label>
+                                <input id="cc-exp" name="cc-exp" type="tel" class="form-control cc-exp" value=""
+                                    data-val="true" data-val-required="Please enter the card expiration"
+                                    data-val-cc-exp="Please enter a valid month and year" placeholder="MM / YY"
+                                    autocomplete="cc-exp" [(ngModel)]="cardDetailsRequest.expirationDate" />
+                                <span class="help-block" data-valmsg-for="cc-exp" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <label for="x_card_code" class="control-label">CVV</label>
+                            <div class="input-group">
+                                <input id="x_card_code" name="x_card_code" type="tel" class="form-control cc-cvc"
+                                    value="" data-val="true" data-val-required="Please enter the security code"
+                                    data-val-cc-cvc="Please enter a valid security code" autocomplete="off"
+                                    [(ngModel)]="cardDetailsRequest.cvv" />
+                                <div class="input-group-addon">
+                                    <span class="fa fa-question-circle fa-lg" data-toggle="popover"
+                                        data-container="body" data-html="true" data-title="Security Code"
+                                        data-content="<div class='text-center one-card'>The 3 digit code on back of the card..<div class='visa-mc-cvc-preview'></div></div>"
+                                        data-trigger="hover"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <a href="javascript:void(0)" (click)="paymentMethod()" id="payment-button" type="button"
+                            class="btn btn-lg btn-success btn-block">
+                            <i class="fa fa-lock fa-lg"></i>&nbsp;
+                            <span id="payment-button-amount">Pay $5.00</span>
+                            <span id="payment-button-sending" style="display:none;">Sending…</span>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card component-card_1 new_card" *ngIf="step===4">
+    <div class="card-body" style="font-weight: 500; color:black;">
+        <div class="row">
+            <div class="col-lg-6 col-12 offset-lg-2">
+                <h5>Verify Phone Number</h5>
+            </div>
+        </div>
+
+        <div class="row margin_45">
+
+
+
+            <div class="col-md-5 col-12 offset-md-1">
+                <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">+1</span>
+                    </div>
+                    <input [(ngModel)]="phoneNumber" type="text" class="form-control" placeholder="8767890987"
+                        aria-label="Amount (to the nearest dollar)">
+                    <div class="input-group-append">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-12">
+                <button (click)="sendOTP()" class="btn btn-success"> send code</button>
+            </div>
+
+            <div class="col-md-5 mt-3 col-12 offset-md-1">
+                <input [(ngModel)]="otp" type="text" class="form-control" placeholder="enter code">
+            </div>
+
+
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-7 col-12 offset-md-1">
+                <a href="javascript:void(0)" (click)="sendOTP()">
+                    <p class="font-weight-bold">Did not get code? <b>Resend code</b></p>
+                </a>
+
+            </div>
+        </div>
+
+        <div class="row my-4">
+
+
+            <div class="col-10 text-center">
+                <button (click)="verifyOTP()" id="sample" class="btn btn-success ">confirm</button>
+
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+<div class="card component-card_1 new_card" *ngIf="step===5">
+    <div class="card-body">
+
+        <div class="row my-4">
+
+            <div class="col-12 ">
+                <a routerLink="/wallet/wallet">
+                    <i class="fa fa-times float-right mr-4"></i>
+                </a>
+            </div>
+
+        </div>
+        <div class="row margin_45">
+            <div class="col-12 text-center">
+
+                <img src="assets/brandlogs/success.png" class="img-fluid success" alt="">
+                <h5 class="started_heading mt-4">
+                    You have successfully created your wallet<br> The current balance is $1800 birthday shopping voucher
+                </h5>
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+</div>

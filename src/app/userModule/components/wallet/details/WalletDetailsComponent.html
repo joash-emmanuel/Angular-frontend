@@ -1,0 +1,109 @@
+<div class="col-12">
+    <div class="widget widget-chart-three">
+        <div class="widget-content animated-underline-content widget-content-area">
+
+            <div id="uniqueVisits">
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 mb-2">
+                        <div class="card component-card_1">
+                            <div class="card-body">
+
+                                <p>Current Balance</p>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h4 class="text-success heading-wallet">${{balance.current}}</h4>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 mb-2">
+                        <div class="card component-card_1">
+                            <div class="card-body">
+
+                                <p>Available Balance</p>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h4 class="text-success heading-wallet">${{balance.available}}</h4>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 mb-2">
+                        <div class="card component-card_1">
+                            <div class="card-body">
+
+                                <p>Care Discount Vouchers</p>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h4 class="text-success heading-wallet">$0.00</h4>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row margin_47">
+
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-4">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">User Profile</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Type</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Date</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let transaction of itemized">
+                                        <td data-label="User Profile">
+                                            <!-- <div class="text-center"> -->
+                                            <span *ngIf="!transaction.sender">{{transaction.type}}</span>
+                                            <a routerLink="/profile/profile/{{transaction.sender.id}}"
+                                                *ngIf="transaction.sender">
+                                                <div class="usr-img-frame mr-2 rounded-circle ml-4">
+
+                                                    <img alt="avatar" class="img-fluid rounded-circle text-center"
+                                                        src="{{configService.getServerUrl()+transaction.sender.profilePicUrl}}" />
+                                                </div>
+                                            </a>
+
+                                            <!-- </div> -->
+                                        </td>
+                                        <td data-label="Name">
+                                            <span *ngIf="transaction.sender">{{transaction.sender.firstName}}
+                                                {{transaction.sender.lastName}}</span>
+                                        </td>
+                                        <td data-label="Type">{{transaction.type}}</td>
+                                        <td data-label="Amount">${{transaction.amount}}</td>
+                                        <td data-label="Date">
+                                            {{timeAgo(transaction.created)}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

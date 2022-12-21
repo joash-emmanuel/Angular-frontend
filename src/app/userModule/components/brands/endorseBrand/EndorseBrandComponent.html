@@ -1,0 +1,390 @@
+<div class="container" *ngIf="step===1">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card component-card_1">
+                <div class="card-body">
+                    <div class="row my-4">
+
+                        <div class="col-12 ">
+                            <a routerLink="/brands">
+                                <i class="fa fa-times float-right mr-4"></i>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="row my-4">
+                        <div class="col-12 text-center">
+                            <h5 class="started_heading">
+
+                            </h5>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h5 class="paragraph_accepted">
+                                Endorse your favourite shopping brand to receive
+                            </h5>
+
+                            <h2 class="wallet_activation margin_30">$50</h2>
+
+                            <h3 class="margin_30">
+                                Care Discount Voucher
+                            </h3>
+                            <h3>
+                                REWARD
+                            </h3>
+
+
+                        </div>
+                    </div>
+
+                    <div class="row margin_45">
+                        <div class="col-12 text-center">
+                            <button (click)="nextStep()" class="btn btn-success">
+                                ENDORSE
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="container" *ngIf="step===2">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card component-card_1 new_card">
+                <div class="card-body">
+
+                    <div class="row my-4">
+
+                        <div class="col-12 ">
+                            <a routerLink="/brands">
+                                <i class="fa fa-times float-right mr-4"></i>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-12 offset-md-5 offset-3 text-center">
+                            <span class="dot d-flex mb-2" style="align-items: center; justify-content: center;">
+                                <i class="fa fa-shopping-bag fa-2x icon-active" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h5 class="started_heading">
+                                <strong style="color:#000"> </strong>
+                            </h5>
+
+
+                        </div>
+                    </div>
+
+                    <div class="row my-4">
+                        <div class="col-md-6 offset-md-3 text-center">
+                            <input [(ngModel)]="name" type="text" id="brand" class="form-control"
+                                placeholder="Enter the Name of Your Brand">
+                        </div>
+                        <div class="col-6 offset-md-3 text-center">
+                            <p id="availability"></p>
+                        </div>
+
+                    </div>
+
+                    <div class="row my-4">
+                        <div class="col-12 text-center">
+                            <button (click)="nextStep()" class="btn btn-success">
+                                CONTINUE
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="container" *ngIf="step===3">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card component-card_1">
+                <div class="card-body">
+                    <div class="row my-4">
+
+                        <div class="col-12 ">
+                            <a routerLink="/brands">
+                                <i class="fa fa-times float-right mr-4"></i>
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="row my-4">
+                        <div class="col-12 text-center">
+                            <h5 class="started_heading">
+                                Upload Your Brand logo
+                            </h5>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                    <!-- start of the cards below -->
+
+                    <div class="row margin_45">
+                        <div class="col-12">
+                            <div class="picture-container">
+                                <div class="picture">
+                                    <i class="fa fa-shopping-bag fa-5x" style="position: relative; top: 10px;"></i>
+                                    <input type="file" id="wizard-picture" class="" accept="image/*"
+                                        (change)="pictureChange($event)">
+                                </div>
+                                <i style="color:black; position: relative; left: 40px; bottom: 30px; font-size: 22px;"
+                                    class="fa fa-camera"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row margin_45">
+                        <div class="col-12 text-center">
+                            <button (click)="nextStep()" type="button" class="btn btn-success btn-sm">CONFIRM</button>
+                        </div>
+                    </div>
+
+                    <div class="margin_45"></div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="container" *ngIf="step===4">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card component-card_1">
+                <div class="card-body">
+                    <div class="row my-4">
+
+                        <div class="col-12 ">
+                            <a routerLink="/brands">
+                                <i class="fa fa-times float-right mr-4"></i>
+                            </a>
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- start of the cards below -->
+
+                    <div class="row mt-4">
+                        <div class="col-md-10 offset-md-1">
+                            <div class="row">
+                                <div class="col-12   text-center">
+                                    <p style="font-size:16px" class="chat-online">
+                                        <b>INPUT BRAND CONNECTION VALUE</b>
+                                    </p>
+                                </div>
+
+                            </div>
+
+                            <div class="row my-3" *ngFor="let brandConnectionValue of brandConnectionValues">
+                                <div class="col-12">
+
+                                    <div class="card component-card_1">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-2 text-center text-sm-left">
+                                                    <img src="{{configService.getServerUrl()+brandConnectionValue.imageUrl}}"
+                                                        class="img-fluid brand-image" alt="">
+                                                </div>
+                                                <div class="col-md-8 text-center text-sm-left">
+                                                    <h5 class="mt-3">
+                                                        <b>{{brandConnectionValue.text}}</b>
+                                                    </h5>
+                                                </div>
+
+                                                <div class="col-md-2 text-center text-sm-left">
+                                                    <a href="javascript:void(0)"
+                                                        (click)="setBrandConnectionValue(brandConnectionValue)">
+                                                        <i class="fa fa-plus-circle text-success fa-3x"></i></a>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="container" *ngIf="step===5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card component-card_1">
+                <div class="card-body">
+
+                    <div class="row my-4">
+
+                        <div class="col-12 ">
+                            <a routerLink="/brands">
+                                <i class="fa fa-times float-right mr-4"></i>
+                            </a>
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- start of the cards below -->
+
+                    <div class="row mt-4">
+                        <div class="col-md-10 offset-md-1">
+                            <div class="row">
+                                <div class="col-12   text-center">
+                                    <p style="font-size:16px" class="chat-online">
+                                        <b>YOUR BRAND CONNECTION VALUE</b>
+                                    </p>
+                                </div>
+
+
+
+                            </div>
+                            <div class="row my-4">
+                                <div class="col-md-3 text-center text-md-left">
+
+                                    <img src="{{configService.getServerUrl()+imageBase64}}" class=""
+                                        style=" width: 80px; border-radius: 60%;border: 1px solid rgba(0, 0, 0, 1);"
+                                        alt="">
+
+                                </div>
+                                <div class="col-md-5 text-center text-md-left mt-4">
+                                    <h5>{{name}}</h5>
+                                </div>
+                            </div>
+
+
+
+                            <div class="row my-3">
+                                <div class="col-12">
+
+                                    <div class="card component-card_1">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-2 text-center text-md-left">
+                                                    <img src="{{configService.getServerUrl()+brandConnectionValue.imageUrl}}"
+                                                        class="img-fluid brand-image" alt="">
+                                                </div>
+                                                <div class="col-md-8 text-center text-md-left">
+                                                    <h5 class="mt-3">
+                                                        <b>{{brandConnectionValue.text}}</b>
+                                                    </h5>
+                                                </div>
+
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                            <div class="row float-right my-3">
+
+                                <div class="col-12 float-right">
+                                    <button (click)="edit()" class="btn btn-outline-success mr-2">
+                                        Edit
+                                    </button>
+
+                                    <button (click)="confirm()" class="btn btn-success float-right">
+                                        Confirm
+                                    </button>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="container" *ngIf="step===6">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card component-card_1 new_card">
+                <div class="card-body">
+
+                    <div class="row my-4">
+
+                        <div class="col-12 ">
+                            <a href="brands.html">
+                                <i class="fa fa-times float-right mr-4"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                    <div class="row" style="margin-top: 60px;">
+                        <div class="col-12 text-center">
+
+                            <img src="assets/brandlogs/success.png" class="img-fluid success" alt="">
+                            <h5 class="started_heading mt-4">
+                                Your brand endorsement is successful.<br> Your $50 Care Discount Voucher Reward <br>will
+                                be credited to your wallet within 24 hours
+                            </h5>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

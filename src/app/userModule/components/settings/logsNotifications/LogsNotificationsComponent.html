@@ -1,0 +1,100 @@
+<div id="home" class="container tab-pane active mr-4"><br>
+
+    <p>Select your logs alert time </p>
+    <div class="row">
+        <div class="col-12">
+            <div class="n-chk">
+                <label
+                    class="new-control new-radio radio-classic-success">
+                    <input (change)="change(24)" type="radio" class="new-control-input"
+                        name="custom-radio-2" checked>
+                    <span class="new-control-indicator"></span>
+                    <p style="color:#000;font-weight:600">Default
+                        (24 hours
+                        before)</p>
+                </label>
+            </div>
+            <div class="n-chk">
+                <label
+                    class="new-control new-radio radio-classic-success">
+                    <input  (change)="change(0)" type="radio" class="new-control-input"
+                        name="custom-radio-2">
+                    <span class="new-control-indicator"></span>
+                    <p style="color:#000;font-weight:600">Ontime</p>
+                </label>
+            </div>
+            <div class="n-chk">
+                <label
+                    class="new-control new-radio radio-classic-success">
+                    <input (change)="change(5)" type="radio" class="new-control-input"
+                        name="custom-radio-2">
+                    <span class="new-control-indicator"></span>
+                    <p style="color:#000;font-weight:600">5 Minutes
+                        before
+                    </p>
+                </label>
+            </div>
+            <div class="n-chk">
+                <label
+                    class="new-control new-radio radio-classic-success">
+                    <input (change)="change(10)" type="radio" class="new-control-input"
+                        name="custom-radio-2">
+                    <span class="new-control-indicator"></span>
+                    <p style="color:#000;font-weight:600">10 Minutes
+                        before
+                    </p>
+                </label>
+            </div>
+            <div class="n-chk">
+                <label
+                    class="new-control new-radio radio-classic-success">
+                    <input (change)="change(15)" type="radio" class="new-control-input"
+                        name="custom-radio-2">
+                    <span class="new-control-indicator"></span>
+                    <p style="color:#000;font-weight:600">15 Minutes
+                        before
+                    </p>
+                </label>
+            </div>
+            <div class="n-chk">
+                <label
+                    class="new-control new-radio radio-classic-success">
+                    <input (change)="change(30)" type="radio" class="new-control-input"
+                        name="custom-radio-2">
+                    <span class="new-control-indicator"></span>
+                    <p style="color:#000;font-weight:600">30 Minutes
+                        before
+                    </p>
+                </label>
+            </div>
+            <div class="n-chk">
+                <label
+                    class="new-control new-radio radio-classic-success">
+                    <input (change)="change(60)" type="radio" class="new-control-input"
+                        name="custom-radio-2">
+                    <span class="new-control-indicator"></span>
+                    <p style="color:#000;font-weight:600">1 Hour
+                        before</p>
+                </label>
+            </div>
+            <div class="n-chk">
+                <label
+                    class="new-control new-radio radio-classic-success">
+                    <input (change)="change(24)" type="radio" class="new-control-input"
+                        name="custom-radio-2">
+                    <span class="new-control-indicator"></span>
+                    <p style="color:#000;font-weight:600">1 Day
+                        before</p>
+                </label>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-12">
+                    <button (click)="confirm()" href="" class="btn btn-success">
+                        Confirm
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

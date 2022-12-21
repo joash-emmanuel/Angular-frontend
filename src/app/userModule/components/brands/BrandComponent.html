@@ -1,0 +1,127 @@
+<div class="row">
+    <div class="col-12 text-right mt-4">
+        <button (click)="endorse()" class="btn btn-success btn-sm">
+            Add Your Brands
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="widget widget-chart-three">
+            <div class="widget-content animated-underline-content widget-content-area">
+                <div id="uniqueVisits">
+                    <div class="row">
+                        <div class="col-12">
+                            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav nav-tabs nav-fill mb-3"
+                                id="animateLine" role="tablist">
+                                <li [ngbNavItem]="1" class="nav-item">
+                                    <a ngbNavLink>Your Brands</a>
+                                    <ng-template ngbNavContent>
+                                        <div class="row" *ngIf="yourBrands.length===0">
+                                            <div class="col-12 text-center margin_50">
+                                                <i class="fa fa-shopping-bag" style="font-size:200px"></i>
+                                                <p>You have 0 connected brands</p>
+
+                                            </div>
+                                        </div>
+                                        <div *ngIf="yourBrands.length>0">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <ngb-carousel [interval]="0" [showNavigationArrows]="true"
+                                                        [showNavigationIndicators]="false">
+                                                        <ng-template ngbSlide
+                                                            *ngFor="let brandChunk of yourBrandsChunks">
+                                                            <div [class.col-3]="chunkSize===4"
+                                                                [class.col-4]="chunkSize===3"
+                                                                [class.col-6]="chunkSize===2"
+                                                                *ngFor="let brandConnection of brandChunk">
+                                                                <div class="card card-body mine-card-padding-brands">
+                                                                    
+                                                                    <p class="brand-connect">
+                                                                        {{brandConnection.noOfConnects}} Connects</p>
+
+                                                                    <img class="img-fluid view_profile_brand_img"
+                                                                        src="{{configService.getServerUrl()+'/'+brandConnection.brand.logoUrl}}">
+
+
+                                                                    <p class="mt-2 text-muted">
+                                                                        {{brandConnection.brand.name}} </p>
+
+                                                                    <button class="btn  button-connected badge-sm_1">
+                                                                        <i class="fa fa-minus-circle font_small mr-2"
+                                                                            style="font-size:18px;margin-left:-15px"
+                                                                            aria-hidden="true"></i>Connected
+                                                                    </button>
+
+
+                                                                </div>
+                                                            </div>
+                                                        </ng-template>
+                                                    </ngb-carousel>
+
+                                                    <!-- visible on mobiles -->
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </ng-template>
+                                </li>
+                                <li [ngbNavItem]="2" class="nav-item">
+
+                                    <a ngbNavLink>Endorsed Brands</a>
+                                    <ng-template ngbNavContent>
+
+                                        <ngb-carousel [interval]="0" [showNavigationArrows]="true" [showNavigationIndicators]="false">
+                                            <ng-template ngbSlide *ngFor="let brandChunk of endorsedBrandsChunks">
+                                                <div [class.col-3]="chunkSize===4" [class.col-4]="chunkSize===3"
+                                                    [class.col-6]="chunkSize===2" *ngFor="let brand of brandChunk">
+                                                    <div class="card card-body mine-card-padding-brands">
+                                          
+                                                        <p class="brand-connect">
+                                                            {{brand.noOfConnects}} Connects</p>
+
+                                                        <img class="img-fluid view_profile_brand_img"
+                                                            src="{{configService.getServerUrl()+brand.logoUrl}}">
+
+
+                                                        <p class="mt-2 text-muted">{{brand.name}}</p>
+
+
+                                                        <button (click)="connect(brand)"
+                                                            class="btn  button-connect badge-sm_1">
+                                                            <i class="fa fa-plus-circle font_small mr-2"
+                                                                style="font-size:20px;margin-left:-15px;"
+                                                                aria-hidden="true"></i>Connect
+                                                        </button>
+
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+
+                                        </ngb-carousel>
+
+
+
+
+                                        <!-- visible on mobiles -->
+
+                                    </ng-template>
+                                </li>
+
+                            </ul>
+
+                            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,156 @@
+<div class="container" *ngIf="step===1">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card component-card_1 new_card">
+                <div class="card-body">
+                    <form class="card_form_1">
+                        <div class="row">
+                            <div class="col-md-8 offset-md-2">
+
+                                <label class="form-label-mine" for="">Share this invitation code to 5 of your
+                                    friends</label>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+
+                            <div class="col-sm-6 offset-sm-2 mb-2">
+                                <p><b>{{code}}</b></p>
+                            </div>
+                            <div class="col-sm-4 text-center">
+                                <button (click)="nextStep()" type="button" class="btn btn-success">Share Code</button>
+                            </div>
+
+                        </div>
+
+
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="container" *ngIf="step===2">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card component-card_1 new_card_1">
+                <div class="row my-4">
+                    <div class="col-12 offset-md-4 offset-2 text-left">
+                        <h5 class="started_heading">
+                            PREVIEW INVITATION
+                        </h5>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-12 text-center">
+                        <img src="{{configService.getServerUrl()+shopper.profilePicUrl}}" alt="" class="img-fluid started_image">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <p class="paragraph_accepted">
+                            {{shopper.firstName}} {{shopper.lastName}}
+                        </p>
+
+                        <p class="paragraph_accepted">
+                            I have gifted you $300 birthday shopping voucher .<br>
+                        </p>
+                        <p class="paragraph_accepted">
+                            Use the invitation code below to receive your gift
+                        </p>
+
+
+                    </div>
+                    <div class="col-12 text-center margin_30">
+                        <h6 class="invite_code">
+                            CODE:{{code}}
+                        </h6>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form class="">
+
+
+
+                        <div class="row my-2">
+
+
+                            <div class="col-12 text-center">
+                                <button (click)="nextStep()" class="btn btn-success">SEND
+                                    INVITE</button>
+                            </div>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="container" *ngIf="step===3">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card component-card_1 new_card">
+                <div class="card-body">
+                    <form class="card_form_1">
+                        <div class="row">
+                            <div class="col-12 text-right">
+                                <a routerLink="/home"
+                                        class="fa fa-times-circle-o fa-2x "></a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+
+                                <label class="form-label-mine" for="">Share this invitation
+                                    code to 5 of your friends</label>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-sm-9 offset-sm-2">
+                                <div class="card component-card_1">
+                                    <div class="card-body">
+                                        <div class="col-12 mb-2 text-center">
+                                            <h6>Share to:</h6>
+                                        </div>
+                                        <div class="row text-center">
+
+                                            <div class="col-12">
+                                                <img class="social_media_icons"
+                                                    src="assets/brandlogs/whatsapp.png">
+                                                <p></p>
+                                            </div>
+
+
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

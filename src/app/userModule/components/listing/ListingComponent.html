@@ -1,0 +1,310 @@
+<div class="d-none d-lg-block">
+    <div class="row">
+        <div class="col-12" *ngFor="let logPostListing of logPostListings">
+            <div class="widget widget-chart-three">
+                <div class="widget-content">
+                    <div id="uniqueVisits">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <a routerLink="/profile/profile/{{logPostListing.logPost.log.shopper.id}}">
+                                    <img class="main-icons mr-2"
+                                        src="{{configService.getServerUrl()+logPostListing.logPost.log.shopper.profilePicUrl}}"
+                                        alt="">
+                                </a>
+                            </div>
+                            <div class="col-md-8 mt-4">
+                                <h5 class="card-head-name">{{logPostListing.logPost.log.shopper.firstName}}
+                                    {{logPostListing.logPost.log.shopper.lastName}}</h5>
+                                <p>{{logPostListing.logPost.text}}</p>
+                            </div>
+                            <div class="col-md-2 mt-4">
+
+                                <button class="btn btn-outline-success"
+                                    (click)="connect(logPostListing.logPost.log.shopper.id)"
+                                    *ngIf="!logPostListing.connected">
+                                    CONNECT
+                                </button>
+
+                                <button class="btn btn-outline-warning" *ngIf="logPostListing.connected">
+                                    CONNECTED
+                                </button>
+
+                            </div>
+                        </div>
+
+
+                        <div class="container mt-4">
+                            <div class="row">
+                                <div class="col-md-9">
+
+                                    <div class="bg-image">
+                                        <!-- <div id="carouselExampleIndicators1" class="carousel slide">
+                                       <ol class="carousel-indicators ">
+                                            <li data-target="#carouselExampleIndicators1"
+                                                data-slide-to="0" class="m "
+                                                *ngFor="let logImage of logPostListing.logPost.logImages"></li>
+
+                                        </ol>
+                                        <div class="carousel-inner" style="max-width:550px">
+                                            <div class="carousel-item"
+                                                *ngFor="let logImage of logPostListing.logPost.logImages">
+                                                <img src="{{configService.getServerUrl()+logImage.url}}"
+                                                    class="slider_new_image" />
+                                            </div>
+                                        </div>
+                                    
+
+                                    </div>-->
+
+                                        <ngb-carousel *ngIf="logPostListing.logPost.logImages.length>0"
+                                            [showNavigationArrows]="false">
+                                            <ng-template ngbSlide
+                                                *ngFor="let logImage of logPostListing.logPost.logImages">
+                                                <div class="picsum-img-wrapper">
+                                                    <img [src]="configService.getServerUrl()+logImage.url"
+                                                        class="slider_new_image" />
+                                                </div>
+                                            </ng-template>
+                                        </ngb-carousel>
+
+                                        <div class="position-absolute bottom-0 text-light"
+                                            style="background-color: rgba(255, 255, 255, 0.6); width: 100%;">
+                                            <div class="row">
+                                                <div class="d-flex index-flex-wrapper">
+                                                    <div class="col-3">
+                                                        <div class="d-flex" style="align-items: center;">
+                                                            <a href="javascript:void(0)"
+                                                                (click)="pledge(logPostListing.logPost.log)">
+                                                                <p class="gift-basket-amount">
+                                                                    ${{logPostListing.pledgeAmount}}
+                                                                </p>
+                                                                <img class="gift-basket" src="assets/brandlogs/gift.png"
+                                                                    alt="">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-5">
+
+                                                        <p class="gift-basket-text">Pre-birthday
+                                                            package <br>
+                                                            {{logPostListing.logPost.log.shopper.dob}}
+                                                        </p>
+
+                                                    </div>
+
+                                                    <div class="col-4 myzindex">
+                                                        <button (click)="logIt(logPostListing)" class="btn btn-success"
+                                                            *ngIf="!logPostListing.logged">
+                                                            <i class="fa fa-plus"></i> Log it
+                                                        </button>
+
+                                                        <span class="btn btn-outline-warning"
+                                                            *ngIf="logPostListing.logged">
+                                                            <i class="fa fa-plus"></i> Logged
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 mt-3">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <span class="dot d-flex mb-2"
+                                                style="align-items: center; justify-content: center;">
+                                                <a href="javascript:void(0)"
+                                                    (click)="pledge(logPostListing.logPost.log)">
+
+                                                    <img src="assets/brandlogs/vector-4@2x.png"
+                                                        class="rounded round-icons" />
+                                                </a>
+                                            </span>
+                                            <span class="icon-text">
+                                                {{logPostListing.pledgeCount}}
+                                            </span>
+                                        </div>
+                                        <div class="col-12 mt-1">
+                                            <span class="dot d-flex mb-2"
+                                                style="align-items: center; justify-content: center;">
+                                                <a href="javascript:void(0)"
+                                                    (click)="chat(logPostListing.logPost.log.id)">
+                                                    <img src="assets/brandlogs/group-1@2x.png"
+                                                        class="rounded round-icons" />
+                                                </a>
+                                            </span>
+                                            <span class="icon-text">
+                                                {{logPostListing.chatCount}}
+                                            </span>
+                                        </div>
+                                        <div class="col-12 mt-1">
+                                            <span class="dot d-flex mb-2"
+                                                style="align-items: center; justify-content: center;">
+                                                <a href="javascript:void(0)" (click)="repost(logPostListing.logPost)">
+                                                    <img src="assets/brandlogs/vector-1@2x.png"
+                                                        class="rounded round-icons" />
+                                                </a>
+                                            </span>
+                                            <span class="icon-text">
+                                                {{logPostListing.repostCount}}
+                                            </span>
+                                        </div>
+                                        <div class="col-12 mt-1">
+                                            <span class="dot d-flex mb-2"
+                                                style="align-items: center; justify-content: center;">
+                                                <a href="javascript:void(0)" (click)="share(logPostListing.logPost)">
+                                                    <img src="assets/brandlogs/cil-share-1@2x.png"
+                                                        class="rounded round-icons" />
+                                                </a>
+                                            </span>
+                                            <span class="icon-text">
+                                                {{logPostListing.shareCount}}
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="d-lg-none">
+    <div *ngFor="let logPostListing of logPostListings">
+        <div class="individual-card">
+            <div class="row">
+                <div class="col-2">
+                    <a routerLink="/profile/profile/{{logPostListing.logPost.log.shopper.id}}">
+                        <img class="phone-main-icons"
+                            src="{{configService.getServerUrl()+logPostListing.logPost.log.shopper.profilePicUrl}}"
+                            alt="">
+                    </a>
+                </div>
+
+                <div class="col-5">
+                    <p class="phone-main-title">{{logPostListing.logPost.log.shopper.firstName}}
+                        {{logPostListing.logPost.log.shopper.lastName}}</p>
+                </div>
+
+                <div class="col-3">
+                    <button class="btn btn-outline-success btn-sm"
+                        (click)="connect(logPostListing.logPost.log.shopper.id)" *ngIf="!logPostListing.connected">
+                        CONNECT
+                    </button>
+
+                    <button class="btn btn-outline-warning btn-sm" *ngIf="logPostListing.connected">
+                        CONNECTED
+                    </button>
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-12 text-left">
+                    <p>{{logPostListing.logPost.text}}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-10">
+                    <div class="card new_mobile_card">
+                        <!-- <img src="assets/brandlogs/rectangle-29-1@2x.png" alt="" class="card-img-top"> -->
+
+                        <div class="bg-image">
+                            <ngb-carousel
+                                [showNavigationArrows]="false">
+                                <ng-template ngbSlide
+                                    *ngFor="let logImage of logPostListing.logPost.logImages">
+                                    
+                                        <img [src]="configService.getServerUrl()+logImage.url"
+                                            class="mobile-slider_new_image" />
+                                    
+                                </ng-template>
+                            </ngb-carousel>
+
+                            <div class="position-absolute bottom-0 text-light height-40"
+                                style="background-color: rgba(255, 255, 255, 0.6); width: 100%;">
+                                <div class="row">
+                                    <div class="d-flex" style="width: 100%;">
+                                        <div class="col-3 padding-0">
+                                            <div class="d-flex">
+                                                <a href="javascript:void(0)"
+                                                    (click)="pledge(logPostListing.logPost.log)">
+                                                    <p class="mygift-basket-amount">${{logPostListing.pledgeAmount}}</p>
+                                                    <img class="mymobile-gift-basket" src="assets/brandlogs/gift.png"
+                                                        alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-4 px-0 mx-0 text-center">
+
+                                            <p class="mymobilegift-basket-text">Pre-birthday package <br>
+                                                {{logPostListing.logPost.log.shopper.dob}}</p>
+
+                                        </div>
+
+                                        <div class="col-4  px-0 mx-0 mt-1 myzindex">
+                                            <button (click)="logIt(logPostListing)"
+                                                class="btn btn-success btn-sm float-right badge-sm"
+                                                *ngIf="!logPostListing.logged">
+                                                <i class="fa fa-plus mr-1"></i> Log it
+                                            </button>
+
+                                            <span class="btn btn-outline-warning btn-sm float-right badge-sm"
+                                                *ngIf="logPostListing.logged">
+                                                <i class="fa fa-plus  mr-1"></i> Logged
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-2">
+                    <div class="row index-margin">
+                        <div class="col-12 text-center">
+                            <a href="javascript:void(0)" (click)="pledge(logPostListing.logPost.log)">
+                                <img src="assets/brandlogs/vector-4@2x.png" class="rounded round-icons" />
+                                <p>{{logPostListing.pledgeCount}}</p>
+                            </a>
+                        </div>
+                        <div class="col-12 text-center">
+                            <a href="javascript:void(0)" (click)="chat(logPostListing.logPost.log.id)">
+                                <img src="assets/brandlogs/group-1@2x.png" class="rounded round-icons" />
+                                <p>{{logPostListing.chatCount}}</p>
+                            </a>
+                        </div>
+                        <div class="col-12 text-center">
+                            <a href="javascript:void(0)" (click)="repost(logPostListing.logPost)">
+                                <img src="assets/brandlogs/vector-1@2x.png" class="rounded round-icons" />
+                                <p>{{logPostListing.repostCount}}</p>
+                            </a>
+                        </div>
+                        <div class="col-12 text-center">
+                            <a href="javascript:void(0)" (click)="share(logPostListing.logPost)">
+                                <img src="assets/brandlogs/cil-share-1@2x.png" class="rounded round-icons" />
+                                <p>{{logPostListing.shareCount}}</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+    </div>
+
+
+</div>
