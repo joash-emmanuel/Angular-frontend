@@ -19,16 +19,15 @@ export class AuthGuard implements CanActivate {
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> {
-        if (this.jwtHelperService.isTokenExpired()) {
-            this.router.navigate([""]);
-        }
         console.log('auth guard canactivate');
         return new Observable(observer => {
             console.log('auth guard canactivate observable');
             console.log("state.url", state.url);
             this.authenticationService.user.subscribe({
                 next: (user: User | boolean | null) => {
+                    if (this.jwtHelperService.isTokenExpired()) {
 
+                    }
                     if (user === false) {
                         observer.next(this.router.parseUrl("/register"));
                         return;
