@@ -4,19 +4,24 @@ import { Router, CanActivate, UrlTree, ActivatedRouteSnapshot, RouterStateSnapsh
 import { Observable } from 'rxjs';
 import { User } from '../userModule/components/user/User';
 import { AuthenticationService } from './AuthenticationService';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
 
-    constructor(private router: Router, private authenticationService: AuthenticationService) {
+    constructor(private router: Router,
+        private authenticationService: AuthenticationService,
+        private jwtHelperService: JwtHelperService) {
 
         console.log('auth guard contructor');
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> {
-
+        if (this.jwtHelperService.isTokenExpired()) {
+            this.router.navigate([""]);
+        }
         console.log('auth guard canactivate');
         return new Observable(observer => {
             console.log('auth guard canactivate observable');

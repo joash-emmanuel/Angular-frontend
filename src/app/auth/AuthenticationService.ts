@@ -1,11 +1,12 @@
 import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpErrorResponse } from "@angular/common/http";
-import { Principal } from "./Principal";
+import { Principal, LoginResponseI } from "./Principal";
 import { LibHttp } from '../lib/http/LibHttp';
 import { PrincipalWrapper } from './PrincipalWrapper';
 import { User } from '../userModule/components/user/User';
 import { ShopperService } from '../userModule/components/shopper/ShopperService';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
     providedIn: 'root'
@@ -17,7 +18,8 @@ export class AuthenticationService {
 
     constructor(
         private libHttp: LibHttp,
-        private shopperService: ShopperService
+        private shopperService: ShopperService,
+        private jwtHelperService: JwtHelperService
     ) {
 
         this.refresh();
@@ -48,6 +50,10 @@ export class AuthenticationService {
         return this.libHttp.get('/shopper');
     }
 
+    serverUserByEmail(email: string): Observable<User> {
+        return this.libHttp.post('/shopper/', { email });
+    }
+
     serverPrincipal(): Observable<PrincipalWrapper> {
         return this.libHttp.get("/principal");
     }
@@ -69,11 +75,22 @@ export class AuthenticationService {
                 credentials.toString()
             )
                 .subscribe({
-                    next: (principal: Principal) => {
+                    next: (res: LoginResponseI) => {
+                        sessionStorage.setItem('userData', JSON.stringify(res));
+                        const decodedToken = this.jwtHelperService.decodeToken(res.access_token)
+
+                        const principal: Principal = {
+                            username: decodedToken.sub,
+                            authorities: decodedToken.authorities,
+                            accountNonExpired: decodedToken.accountNonExpired,
+                            accountNonLocked: decodedToken.accountLocked,
+                            credentialsNonExpired: decodedToken.credentialNonExpired,
+                            enabled: decodedToken.enabled
+                        };
 
                         this.principal.next(principal);
 
-                        this.serverUser().subscribe({
+                        this.serverUserByEmail(principal.username).subscribe({
                             next: (user: User) => {
                                 this.user.next(user);
                                 observer.next(user);
@@ -107,6 +124,7 @@ export class AuthenticationService {
                             this.principal.next(new Principal());
                             this.user.next(false);
                             observer.next(true);
+                            sessionStorage.clear();
                         },
                         error: error => {
 
