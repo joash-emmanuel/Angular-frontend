@@ -257,14 +257,13 @@ export class AcceptInvitationComponent implements OnInit {
           error: error => { },
           complete: () => {
             const pictures = JSON.parse(this.shopper.profilePicUrl);
-            // if (this.innerWidth <= 400) {
-            //   this.displayedProfilPic = pictures.small;
-            // } else if (this.innerWidth <= 768 && this.innerWidth > 400) {
-            //   this.displayedProfilPic = pictures.medium;
-            // } else if (this.innerWidth > 768) {
-            //   this.displayedProfilPic = pictures.large;
-            // }
-            this.displayedProfilPic = pictures.small;
+            if (this.innerWidth <= 400) {
+              this.displayedProfilPic = pictures.small;
+            } else if (this.innerWidth <= 768 && this.innerWidth > 400) {
+              this.displayedProfilPic = pictures.medium;
+            } else if (this.innerWidth > 768) {
+              this.displayedProfilPic = pictures.large;
+            }
           }
         });
     }
@@ -358,15 +357,22 @@ export class AcceptInvitationComponent implements OnInit {
   }
 
   async saveCredentials() {
+
     const { firstName, lastName, gender } = this.shopperDetailsForm.value;
 
     if (!this.shopperDetailsForm.valid || !firstName || !lastName || !gender) {
-      this.firstName?.setErrors({ "required": true });
-      this.lastName?.setErrors({ "required": true });
-      this.gender?.setErrors({ "required": true });
-      this.firstName?.markAsTouched();
-      this.lastName?.markAsTouched();
-      this.gender?.markAsTouched();
+      if (!firstName) {
+        this.firstName?.setErrors({ "required": true });
+        this.firstName?.markAsTouched();
+      }
+      if (!lastName) {
+        this.lastName?.setErrors({ "required": true });
+        this.lastName?.markAsTouched();
+      }
+      if (!gender) {
+        this.gender?.setErrors({ "required": true });
+        this.gender?.markAsTouched();
+      }
       return;
     }
 
@@ -383,6 +389,7 @@ export class AcceptInvitationComponent implements OnInit {
       });
 
     this.walletService.acceptInvitation(this.shopper.id);
+    this.nextStep();
 
   }
 
