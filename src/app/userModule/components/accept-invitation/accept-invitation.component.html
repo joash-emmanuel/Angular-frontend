@@ -694,72 +694,70 @@
                         </select>
                     </div>
                     <mat-error *ngIf="gender?.errors?.['required'] && gender?.touched">
-                        Username is required
+                        Gender is required
                     </mat-error>
 
                 </div>
 
-                <!-- <div class="row">
-                    <div class="col-12">
-
-                        <label class="form-label-mine" for="">Password</label>
-                    </div>
-                </div>
-
-                <div class="row mb-4">
-
-                    <div class="col-12">
-                        <div class="input-group">
-                            <input type="password" class="form-control" id="show_hide_password" placeholder="********"
-                                aria-label="Recipient's username" aria-describedby="basic-addon2"
-                                formControlName="password">
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon6">
-                                    <a id="show_hide_passwordi">
-                                        <i class="fa fa-eye-slash"></i>
-                                    </a>
-                                </span>
+                <!-- <div class="col-12" *ngFor="let shopperConnectionValue of shopperConnectionValues">
+                    <div class="card component-card_1">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-2">
+                                    <i class="fa fa-users fa-3x brand-image" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-7">
+                                    <h5 class="mt-3">
+                                        <b>{{shopperConnectionValue.text}}</b>
+                                    </h5>
+                                </div>
+                                <div class="col-2">
+                                    <button (click)="selectConnectionValue(shopperConnectionValue)"
+                                        class="btn bg-white btn-sm"> <i
+                                            class="fa fa-plus-circle text-success fa-3x float-right"></i></button>
+                                </div>
                             </div>
                         </div>
-                        <mat-error *ngIf="password?.errors?.['required'] && password?.touched">
-                            password is required
-                        </mat-error>
                     </div>
-
-                </div>
-
-
-                <div class="row">
-                    <div class="col-12">
-
-                        <label class="form-label-mine" for="">Confirm Password</label>
-                    </div>
-                </div>
-
-                <div class="row mb-4">
-
-                    <div class="col-12">
-                        <div class="input-group">
-                            <input type="password" class="form-control" placeholder="******"
-                                aria-label="Recipient's username" aria-describedby="basic-addon2"
-                                formControlName="confirmedPassword" />
-                            <div class="input-group-append">
-                                <span class="input-group-text" id="basic-addon6">
-                                    <i class="fa fa-eye"></i>
-                                </span>
+                    <div class="card component-card_1">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-2">
+                                    <i class="fa fa-users fa-3x brand-image" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-7">
+                                    <h5 class="mt-3">
+                                        <b>{{shopperConnectionValue.text}}</b>
+                                    </h5>
+                                </div>
+                                <div class="col-2">
+                                    <button (click)="selectConnectionValue(shopperConnectionValue)"
+                                        class="btn bg-white btn-sm"> <i
+                                            class="fa fa-plus-circle text-success fa-3x float-right"></i></button>
+                                </div>
                             </div>
                         </div>
-                        <mat-error *ngIf="confirmedPassword?.errors?.['required'] && confirmedPassword?.touched">
-                            confirmPassword is required
-                        </mat-error>
-                        <mat-error *ngIf="passwordMismatch">
-                            passwords must match
-                        </mat-error>
-                        <input type="text" class="form-control"  placeholder="12344567">
                     </div>
-
+                    <div class="card component-card_1">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-2">
+                                    <i class="fa fa-users fa-3x brand-image" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-7">
+                                    <h5 class="mt-3">
+                                        <b>{{shopperConnectionValue.text}}</b>
+                                    </h5>
+                                </div>
+                                <div class="col-2">
+                                    <button (click)="selectConnectionValue(shopperConnectionValue)"
+                                        class="btn bg-white btn-sm"> <i
+                                            class="fa fa-plus-circle text-success fa-3x float-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div> -->
-
 
                 <div class="row margin_50">
 
@@ -775,6 +773,25 @@
             </form>
 
 
+        </div>
+        <div class="col-12" *ngIf="step===14">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row margin_45">
+                            <div class="col-12 text-center">
+                                <img src="assets/brandlogs/success.png" class="img-fluid success" alt="">
+                                <h5 class="started_heading mt-4">
+                                    You have successfully created a profile Thank You for being part of
+                                    brandlogs<br>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
         <div class="col-12 text-danger">{{errorMessage}}</div>
