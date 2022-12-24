@@ -18,6 +18,7 @@ import { AuthGuard } from './auth/AuthGuard';
 import { CommonModule } from '@angular/common';
 import { JwtModule } from "@auth0/angular-jwt";
 import { LoginResponseI } from './auth/Principal';
+import { HotToastModule } from '@ngneat/hot-toast';
 
 export function tokenGetter() {
   const userData: LoginResponseI = JSON.parse(sessionStorage.getItem("userData")!);
@@ -46,6 +47,7 @@ export function tokenGetter() {
         disallowedRoutes: [],
       },
     }),
+    HotToastModule.forRoot(),
   ],
   providers: [
     ConfigService,

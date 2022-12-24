@@ -38,7 +38,10 @@ import { AcceptInvitationComponent } from './components/accept-invitation/accept
 
 const routes: Routes = [
     {
-        path: '',
+        path: '', redirectTo: 'acceptInvitation', pathMatch: 'full'
+    },
+    {
+        path: 'index',
         component: IndexComponent,
         children: [
             {

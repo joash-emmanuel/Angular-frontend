@@ -280,7 +280,10 @@
             <div class="row margin_30">
                 <div class="col-12">
                     <div class="picture-container">
-                        <div class="picture">
+                        <div class="dispalyPicture" *ngIf="shopper.profilePicUrl">
+                            <img class="dispalyPictureImg" src="{{displayedProfilPic}}" alt="profile picture">
+                        </div>
+                        <div class="picture" *ngIf="!shopper.profilePicUrl">
                             <i class="fa fa-user fa-5x" style="position: relative; top: 10px;"></i>
                             <input type="file" id="wizard-picture" class="" accept="image/*"
                                 (change)="profilePicFileChange($event)">
@@ -293,7 +296,7 @@
 
             <div class="row margin_30">
                 <div class="col-12 text-center">
-                    <button (click)="nextStep()" class="btn btn-success btn-sm">CONFIRM</button>
+                    <button (click)="confirmPictureUpload()" class="btn btn-success btn-sm">CONFIRM</button>
                 </div>
             </div>
 
@@ -696,7 +699,7 @@
 
                 </div>
 
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-12">
 
                         <label class="form-label-mine" for="">Password</label>
@@ -710,13 +713,13 @@
                             <input type="password" class="form-control" id="show_hide_password" placeholder="********"
                                 aria-label="Recipient's username" aria-describedby="basic-addon2"
                                 formControlName="password">
-                            <!-- <div class="input-group-append">
+                            <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon6">
                                     <a id="show_hide_passwordi">
                                         <i class="fa fa-eye-slash"></i>
                                     </a>
                                 </span>
-                            </div> -->
+                            </div>
                         </div>
                         <mat-error *ngIf="password?.errors?.['required'] && password?.touched">
                             password is required
@@ -740,11 +743,11 @@
                             <input type="password" class="form-control" placeholder="******"
                                 aria-label="Recipient's username" aria-describedby="basic-addon2"
                                 formControlName="confirmedPassword" />
-                            <!-- <div class="input-group-append">
+                            <div class="input-group-append">
                                 <span class="input-group-text" id="basic-addon6">
                                     <i class="fa fa-eye"></i>
                                 </span>
-                            </div> -->
+                            </div>
                         </div>
                         <mat-error *ngIf="confirmedPassword?.errors?.['required'] && confirmedPassword?.touched">
                             confirmPassword is required
@@ -752,10 +755,10 @@
                         <mat-error *ngIf="passwordMismatch">
                             passwords must match
                         </mat-error>
-                        <!-- <input type="text" class="form-control"  placeholder="12344567"> -->
+                        <input type="text" class="form-control"  placeholder="12344567">
                     </div>
 
-                </div>
+                </div> -->
 
 
                 <div class="row margin_50">
@@ -763,7 +766,7 @@
                     <div class="col-6 offset-md-2">
 
                     </div>
-                    <div class="col-4 text-left">
+                    <div class="col-4 text-left" style="margin-bottom: 50px;">
                         <button (click)="saveCredentials()" class="btn btn-success">CONFIRM</button>
                     </div>
                 </div>

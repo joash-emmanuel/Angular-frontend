@@ -25,9 +25,6 @@ export class AuthGuard implements CanActivate {
             console.log("state.url", state.url);
             this.authenticationService.user.subscribe({
                 next: (user: User | boolean | null) => {
-                    if (this.jwtHelperService.isTokenExpired()) {
-
-                    }
                     if (user === false) {
                         observer.next(this.router.parseUrl("/register"));
                         return;

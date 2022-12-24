@@ -14,7 +14,7 @@ export class IndexComponent  implements OnInit{
 
     }
     ngOnInit(): void {
-        this.router.navigate(['acceptInvitation'])
+        // this.router.navigate(['home'])
     }
 
 }

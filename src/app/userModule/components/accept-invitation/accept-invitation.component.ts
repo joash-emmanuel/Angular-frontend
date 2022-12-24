@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { NgbActiveModal, NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { combineLatestWith } from "rxjs";
@@ -20,7 +20,7 @@ import { ShopperConnectionRequestService } from "../shopperconnectionrequest/Sho
 import { WalletService } from "../wallet/WalletService";
 import { AcceptInvitationService } from '../acceptInvitationModal/AcceptInvitationService';
 import { ShopperConnectionService } from '../shopperconnection/ShopperConnectionService';
-import { id } from 'date-fns/locale';
+import { HotToastService } from "@ngneat/hot-toast";
 
 @Component({
   selector: 'app-accept-invitation',
@@ -28,7 +28,6 @@ import { id } from 'date-fns/locale';
   styleUrls: ['./accept-invitation.component.css']
 })
 export class AcceptInvitationComponent implements OnInit {
-
   private modalRef: NgbModalRef | null = null;
 
   codeVerificationForm = new FormGroup({
@@ -43,9 +42,7 @@ export class AcceptInvitationComponent implements OnInit {
   shopperDetailsForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
-    gender: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-    confirmedPassword: new FormControl('', [Validators.required])
+    gender: new FormControl('', [Validators.required])
   });
 
   errorMessage = "";
@@ -59,6 +56,10 @@ export class AcceptInvitationComponent implements OnInit {
   passwordMismatch: boolean = false;
   shopperConnectionValues: ShopperConnectionValue[] = [];
   birthDate: string = "";// NgbDate = new NgbDate(new Date().getFullYear(), new Date().getMonth(), new Date().getDay());
+  dateNow = new Date();
+  currentYear = this.dateNow.getUTCFullYear();
+  displayedProfilPic = "";
+  innerWidth: any;
 
   shopper: Shopper = new Shopper();
   acceptedTermsAndConditions: boolean = false;
@@ -73,6 +74,7 @@ export class AcceptInvitationComponent implements OnInit {
   ];
 
   constructor(
+    private toast: HotToastService,
     private shopperService: ShopperService,
     private adminLogStoryService: AdminLogStoryService,
     private logPostService: LogPostService,
@@ -85,10 +87,11 @@ export class AcceptInvitationComponent implements OnInit {
     private walletService: WalletService,
     public activeModal: NgbActiveModal,
     private service: AcceptInvitationService,
-    private shopperConnectionService: ShopperConnectionService
+    private shopperConnectionService: ShopperConnectionService,
   ) { }
 
   ngOnInit(): void {
+    this.innerWidth = window.innerWidth;
   }
 
   ngAfterViewInit(): void {
@@ -117,14 +120,6 @@ export class AcceptInvitationComponent implements OnInit {
     return this.shopperDetailsForm.get('gender');
   }
 
-  get password() {
-    return this.shopperDetailsForm.get('password');
-  }
-
-  get confirmedPassword() {
-    return this.shopperDetailsForm.get('confirmedPassword');
-  }
-
   get otp() {
     return this.verifyEmailForm.get('otp');
   }
@@ -145,16 +140,22 @@ export class AcceptInvitationComponent implements OnInit {
     this.code = verificationCode;
 
     this.service.verifyCode(verificationCode)
-      .subscribe((response: Shopper) => {
-        this.step++;
-        this.inviter = response;
-      });
+      .subscribe(
+        {
+          next: (response: Shopper) => {
+            this.step++;
+            this.inviter = response;
+
+          },
+          error: (error) => { }
+        }
+      );
   }
 
   verifyEmail() {
     const { email, otp } = this.verifyEmailForm.value;
 
-    if (!email) {
+    if (!email || !this.email?.valid) {
       this.email?.setErrors({ "required": true });
       this.email?.setErrors({ "email": true });
       this.email?.markAsTouched();
@@ -163,16 +164,20 @@ export class AcceptInvitationComponent implements OnInit {
 
     this.verificationEmail = email;
 
-    this.service.verifyEmail({ code: this.code, email: email })
-      .subscribe(response => {
-        // this.step++;
-      });
+    this.service.verifyEmail({ code: this.code, email: email }).pipe(
+      this.toast.observe({
+        success: 'OTP Sent',
+        loading: 'Sending OTP...',
+        error: ({ message }) => `There was an error: ${message} `,
+      })
+    )
+      .subscribe();
   }
 
   verifyOTP() {
     const { email, otp } = this.verifyEmailForm.value;
 
-    if (!otp) {
+    if (!otp || !this.otp?.valid) {
       this.otp?.setErrors({ "required": true });
       this.otp?.markAllAsTouched();
       return;
@@ -180,11 +185,20 @@ export class AcceptInvitationComponent implements OnInit {
 
     this.service.verifyOTP({ code: this.code, email: this.verificationEmail, otp: otp })
       .subscribe((response) => {
-        if(response){
+        if (response) {
           this.step++;
         }
         this.shopper = response;
       });
+  }
+
+  confirmPictureUpload() {
+    if (!this.shopper.profilePicUrl) {
+      this.toast.error('profile picture is required', { autoClose: false, dismissible: true });
+      return;
+    }
+
+    this.nextStep();
   }
 
   saveBirthday() {
@@ -192,7 +206,15 @@ export class AcceptInvitationComponent implements OnInit {
     let dob = Date.parse(this.birthDate);
     let dbDate = new Date(dob);
     console.log("dbDate", dbDate);
-    this.shopper.dob = dbDate.getFullYear() + "-" + (dbDate.getMonth() + 1) + "-" + dbDate.getDate(); //this.birthDate.year + "-" + this.birthDate.month + "-" + this.birthDate.day;
+    if (!dbDate) {
+      this.toast.error('enter valid date', { autoClose: false, dismissible: true });
+      return;
+    }
+    if (dbDate.getFullYear() > (this.currentYear - 16) || dbDate.getFullYear() < (this.currentYear - 100)) {
+      this.toast.error('age limit is 16', { autoClose: false, dismissible: true });
+      return;
+    }
+    this.birthDate = dbDate.getFullYear() + "-" + (dbDate.getMonth() + 1) + "-" + dbDate.getDate(); //this.birthDate.year + "-" + this.birthDate.month + "-" + this.birthDate.day;
     console.log('shopper.dob', this.shopper.dob);
     this.step++;
   }
@@ -215,13 +237,37 @@ export class AcceptInvitationComponent implements OnInit {
       });
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.innerWidth = window.innerWidth;
+  }
+
   profilePicFileChange(event: any) {
 
     if (event.target.files.length > 0) {
-      this.shopperService.uploadProfilePic(this.shopper.id, event.target.files[0])
-        .subscribe(response => this.shopper = response)
+      this.shopperService.uploadProfilePic(this.shopper.id, event.target.files[0]).pipe(
+        this.toast.observe({
+          success: 'Profile picture uploaded',
+          loading: 'Uploading ...',
+          error: ({ message }) => `There was an error: ${message} `,
+        })
+      )
+        .subscribe({
+          next: response => { this.shopper = response },
+          error: error => { },
+          complete: () => {
+            const pictures = JSON.parse(this.shopper.profilePicUrl);
+            // if (this.innerWidth <= 400) {
+            //   this.displayedProfilPic = pictures.small;
+            // } else if (this.innerWidth <= 768 && this.innerWidth > 400) {
+            //   this.displayedProfilPic = pictures.medium;
+            // } else if (this.innerWidth > 768) {
+            //   this.displayedProfilPic = pictures.large;
+            // }
+            this.displayedProfilPic = pictures.small;
+          }
+        });
     }
-    this.step++;
   }
 
   customizeLogStory() {
@@ -312,32 +358,23 @@ export class AcceptInvitationComponent implements OnInit {
   }
 
   async saveCredentials() {
-    const { firstName, lastName, gender, password, confirmedPassword } = this.shopperDetailsForm.value;
+    const { firstName, lastName, gender } = this.shopperDetailsForm.value;
 
-    if (!this.shopperDetailsForm.valid || !firstName || !lastName || !password || !confirmedPassword || !gender) {
+    if (!this.shopperDetailsForm.valid || !firstName || !lastName || !gender) {
       this.firstName?.setErrors({ "required": true });
       this.lastName?.setErrors({ "required": true });
-      this.password?.setErrors({ "required": true });
-      this.confirmedPassword?.setErrors({ "required": true });
       this.gender?.setErrors({ "required": true });
       this.firstName?.markAsTouched();
       this.lastName?.markAsTouched();
-      this.password?.markAsTouched();
-      this.confirmedPassword?.markAsTouched();
       this.gender?.markAsTouched();
-      return;
-    }
-
-    if (password != confirmedPassword) {
-      this.passwordMismatch = true;
       return;
     }
 
     this.shopper.firstName = firstName;
     this.shopper.lastName = lastName;
     this.shopper.gender = gender;
-    this.shopper.password = password;
-    this.shopper.id = 0;
+    this.shopper.dob = this.birthDate;
+    this.shopper.password = "password";
 
     await this.shopperService.save(this.shopper)
       .subscribe(response => {
@@ -347,9 +384,6 @@ export class AcceptInvitationComponent implements OnInit {
 
     this.walletService.acceptInvitation(this.shopper.id);
 
-    this.modalService.dismissAll();
-
-    this.modalService.open(LoginModalComponent);
   }
 
 }

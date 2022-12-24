@@ -7,6 +7,7 @@ import { PrincipalWrapper } from './PrincipalWrapper';
 import { User } from '../userModule/components/user/User';
 import { ShopperService } from '../userModule/components/shopper/ShopperService';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -19,31 +20,36 @@ export class AuthenticationService {
     constructor(
         private libHttp: LibHttp,
         private shopperService: ShopperService,
-        private jwtHelperService: JwtHelperService
+        private jwtHelperService: JwtHelperService,
+        private router: Router
     ) {
 
         this.refresh();
     }
 
     refresh() {
-        this.serverUser().subscribe({
-            next: user => {
-                console.log('user', user);
-                this.user.next(user);
-            },
-            error: error => {
-                this.user.next(false);
-            }
-        });
-        this.serverPrincipal().subscribe({
-            next: principal => {
-                this.principal.next(principal.principal);
+        const userEmail = sessionStorage.getItem('userEmail')!;
+        if (userEmail) {
+            this.serverUserByEmail(userEmail).subscribe({
+                next: user => {
+                    console.log('user', user);
+                    this.user.next(user);
+                },
+                error: error => {
+                    this.user.next(false);
+                }
+            });
+        }
 
-            },
-            error: error => {
-                this.principal.next(false)
-            }
-        });
+        // this.serverPrincipal().subscribe({
+        //     next: principal => {
+        //         this.principal.next(principal.principal);
+
+        //     },
+        //     error: error => {
+        //         this.principal.next(false)
+        //     }
+        // });
     }
 
     serverUser(): Observable<User> {
@@ -51,7 +57,7 @@ export class AuthenticationService {
     }
 
     serverUserByEmail(email: string): Observable<User> {
-        return this.libHttp.post('/shopper/', { email });
+        return this.libHttp.post('/shopper/email', { "email": email });
     }
 
     serverPrincipal(): Observable<PrincipalWrapper> {
@@ -87,7 +93,7 @@ export class AuthenticationService {
                             credentialsNonExpired: decodedToken.credentialNonExpired,
                             enabled: decodedToken.enabled
                         };
-
+                        sessionStorage.setItem('userEmail', principal.username);
                         this.principal.next(principal);
 
                         this.serverUserByEmail(principal.username).subscribe({
@@ -116,18 +122,17 @@ export class AuthenticationService {
     logout(): Observable<boolean> {
         return new Observable(observer => {
 
+            this.principal.next(new Principal());
+            this.user.next(false);
+            observer.next(true);
+            sessionStorage.clear();
+            this.router.navigate(['home'])
+
             this.libHttp.post("/logout", {})
                 .subscribe(
                     {
-                        next: response => {
-
-                            this.principal.next(new Principal());
-                            this.user.next(false);
-                            observer.next(true);
-                            sessionStorage.clear();
-                        },
+                        next: response => { },
                         error: error => {
-
                             observer.next(false);
                         }
                     }
