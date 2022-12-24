@@ -8,3 +8,8 @@ export class Principal {
     credentialsNonExpired: boolean = false;
     enabled: boolean = false;
 }
+
+export interface LoginResponseI {
+    access_token: string;
+    refresh_token: string;
+}

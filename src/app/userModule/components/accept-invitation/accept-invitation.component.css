@@ -22,3 +22,14 @@
 .fit-content {
     width: fit-content;
 }
+
+.dispalyPictureImg {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+mat-error {
+    color: red;
+}

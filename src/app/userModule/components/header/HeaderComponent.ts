@@ -82,6 +82,8 @@ export class HeaderComponent implements AfterViewInit {
                 console.log('logged in');
                 this.loggedIn = true;
                 this.user = user;
+                console.log(user);
+                console.log(user.profilePicUrl)
             }
         });
 

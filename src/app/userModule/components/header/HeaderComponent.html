@@ -102,7 +102,7 @@
                         aria-expanded="false">
 
                         <img *ngIf="user!.profilePicUrl" src="{{configService.getServerUrl()+user!.profilePicUrl}}"
-                            class="img-fluid" style="height:50px ;" alt="" />
+                            class="img-fluid" style="height:50px ;" alt="profile picture" />
                         <i class="fa fa-user fa-lg" *ngIf="!user!.profilePicUrl"></i>
                     </a>
 
@@ -138,7 +138,7 @@
                         id="dropdownMenuLink-1" aria-haspopup="true" aria-expanded="false">
 
                         <img *ngIf="user!.profilePicUrl" src="{{configService.getServerUrl()+user!.profilePicUrl}}"
-                            class="img-fluid" style="height:60px ;" alt="" />
+                            class="img-fluid" style="height:60px ;" alt="profile picture" />
 
                         <i class="fa fa-user fa-lg" *ngIf="!user!.profilePicUrl"></i>
                     </a>

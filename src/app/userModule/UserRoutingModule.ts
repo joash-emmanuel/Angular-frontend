@@ -38,7 +38,10 @@ import { AcceptInvitationComponent } from './components/accept-invitation/accept
 
 const routes: Routes = [
     {
-        path: '',
+        path: '', redirectTo: 'acceptInvitation', pathMatch: 'full'
+    },
+    {
+        path: 'index',
         component: IndexComponent,
         children: [
             {
@@ -150,8 +153,8 @@ const routes: Routes = [
                 component: ShopperConnectionRequestComponent
             },
             {
-                path:"profile/edit",
-                component:EditProfileComponent
+                path: "profile/edit",
+                component: EditProfileComponent
             }
 
         ]
@@ -159,28 +162,28 @@ const routes: Routes = [
     {
         path: 'settings',
         component: SettingsComponent,
-        children:[
+        children: [
             {
-                path:'timezone',
-                component:TimeZoneComponent
+                path: 'timezone',
+                component: TimeZoneComponent
             },
             {
-                path:'logsnotifications',
-                component:LogsNotificationsComponent
+                path: 'logsnotifications',
+                component: LogsNotificationsComponent
             },
             {
-                path:'policy',
-                component:PolicyComponent
+                path: 'policy',
+                component: PolicyComponent
             },
             {
-                path:'help',
-                component:HelpComponent
+                path: 'help',
+                component: HelpComponent
             },
         ]
     },
     {
         path: 'acceptInvitation',
-        component:AcceptInvitationComponent
+        component: AcceptInvitationComponent
     }
 ];
 

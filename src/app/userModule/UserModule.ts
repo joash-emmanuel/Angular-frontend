@@ -97,6 +97,8 @@ import { ShareService } from './components/logs/share/ShareService';
 import { AcceptInvitationComponent } from './components/accept-invitation/accept-invitation.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HotToastModule } from '@ngneat/hot-toast';
 
 
 @NgModule({
@@ -173,7 +175,9 @@ import { MatIconModule } from '@angular/material/icon';
     BrowserModule,
     NgbModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule,
+    HotToastModule
   ],
   providers: [
     IndexService,

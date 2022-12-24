@@ -17,9 +17,12 @@ import { LibHttpXsrfInterceptor } from './lib/http/LibHttpXsrfInterceptor';
 import { AuthGuard } from './auth/AuthGuard';
 import { CommonModule } from '@angular/common';
 import { JwtModule } from "@auth0/angular-jwt";
+import { LoginResponseI } from './auth/Principal';
+import { HotToastModule } from '@ngneat/hot-toast';
 
 export function tokenGetter() {
-  return localStorage.getItem("access_token");
+  const userData: LoginResponseI = JSON.parse(sessionStorage.getItem("userData")!);
+  return userData.access_token;
 }
 
 @NgModule({
@@ -40,10 +43,11 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: [],
+        allowedDomains: ["http://Backend-LB-1653441132.us-west-1.elb.amazonaws.com"],
         disallowedRoutes: [],
       },
     }),
+    HotToastModule.forRoot(),
   ],
   providers: [
     ConfigService,
