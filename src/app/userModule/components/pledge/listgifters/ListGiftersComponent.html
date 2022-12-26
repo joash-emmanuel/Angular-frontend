@@ -12,7 +12,7 @@
             </div>
 
             <div class="col-1 float-right close_icon_invite_2">
-                <a routerLink="/home"> <i class="fa fa-times-circle-o fa-2x "></i></a>
+                <a routerLink="/index/home"> <i class="fa fa-times-circle-o fa-2x "></i></a>
             </div>
         </div>
 
@@ -42,7 +42,7 @@
 
                             <tbody>
                                 <tr *ngFor="let pledge of pledges">
-                                    <td class="td_gift_page"><a routerLink="/profile/profile/{{pledge.log.shopper.id}}"> <img
+                                    <td class="td_gift_page"><a routerLink="/index/profile/profile/{{pledge.log.shopper.id}}"> <img
                                                 src="{{configService.getServerUrl()+[pledge.shopper.profilePicUrl]}}" class="mr-4 table-img"
                                                 alt=""></a> <span class="table-text">{{pledge.shopper.firstName}}
                                             {{pledge.shopper.lastName}}</span></td>

@@ -21,7 +21,7 @@
                                     <div class="row" *ngIf="yourLogs.length>0">
                                         <div class="col-md-6" *ngFor="let logPost of yourLogs">
                                             <div class="card component-card_9">
-                                                <a routerLink="/home">
+                                                <a routerLink="/index/home">
                                                     <img src="{{configService.getServerUrl()+logPost.logImages[0]!?.url}}"
                                                         class="card-img-top package_images" alt="widget-card-2">
                                                 </a>
@@ -29,13 +29,13 @@
 
                                                     <div class="row">
                                                         <div class="col-2">
-                                                            <a routerLink="/profile/profile/{{logPost.log.shopper.id}}">
+                                                            <a routerLink="/index/profile/profile/{{logPost.log.shopper.id}}">
                                                                 <img src="{{configService.getServerUrl()+logPost.log.shopper.profilePicUrl}}"
                                                                     class="icons_logs" alt="">
                                                             </a>
                                                         </div>
                                                         <div class="col-5">
-                                                            <a routerLink="/profile/profile/{{logPost.log.shopper.id}}">
+                                                            <a routerLink="/index/profile/profile/{{logPost.log.shopper.id}}">
                                                                 <h6 class="mt-3 log_name">
                                                                     {{logPost.log.shopper.firstName}}
                                                                     {{logPost.log.shopper.lastName}}</h6>
@@ -61,7 +61,7 @@
                                         <div class="col-md-6" *ngFor="let suggestedLog of suggestedLogs">
 
                                             <div class="card component-card_9">
-                                                <a routerLink="/home">
+                                                <a routerLink="/index/home">
                                                     <img src="{{configService.getServerUrl()+suggestedLog.logImages[0]!?.url}}"
                                                         class="card-img-top package_images" alt="widget-card-2">
                                                 </a>
@@ -72,14 +72,14 @@
                                                     <div class="row">
                                                         <div class="col-2">
                                                             <a
-                                                                routerLink="/profile/profile/{{suggestedLog.log.shopper.id}}">
+                                                                routerLink="/index/profile/profile/{{suggestedLog.log.shopper.id}}">
                                                                 <img src="{{configService.getServerUrl()+suggestedLog.log.shopper.profilePicUrl}}"
                                                                     class="icons_logs" alt="">
                                                             </a>
                                                         </div>
                                                         <div class="col-5">
                                                             <a
-                                                                routerLink="/profile/profile/{{suggestedLog.log.shopper.id}}">
+                                                                routerLink="/index/profile/profile/{{suggestedLog.log.shopper.id}}">
                                                                 <h6 class="mt-3 log_name">
                                                                     {{suggestedLog.log.shopper.firstName}}
                                                                     {{suggestedLog.log.shopper.lastName}}</h6>

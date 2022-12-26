@@ -16,7 +16,7 @@
             <ng-template #rt let-r="result" let-t="term">
                 <div class="row padding-30 items">
                     <div class="col-12 border-bottom">
-                        <a routerLink="/profile/profile/{{r.id}}">
+                        <a routerLink="/index/profile/profile/{{r.id}}">
                             <div class="row">
                                 <div class="col-2"> <img [src]="configService.getServerUrl()+r.profilePicUrl"
                                         class="me-1" style="width: 16px" />
@@ -91,7 +91,7 @@
 
                 <!-- this is only visible in mobiles -->
                 <li class="nav-item dropdown language-dropdown more-dropdown d-block d-sm-none " *ngIf="user!.admin">
-                    <a href="javascript:void(0)" routerLink="/admindashboard"
+                    <a href="javascript:void(0)" routerLink="/index/admindashboard"
                         class="btn btn-success btn-sm mobile-accept-invitation-pre">
                         ADMIN DASHBOARD
                     </a>
@@ -108,7 +108,7 @@
 
                     <div [class.show]="dropDownActive" class="dropdown-menu" aria-labelledby="dropdownMenuLink-1">
 
-                        <a (click)="dropDownActive=!dropDownActive" class="dropdown-item" routerLink="/profile/profile">
+                        <a (click)="dropDownActive=!dropDownActive" class="dropdown-item" routerLink="/index/profile/profile">
                             <i class=" mr-2 fa fa-user"></i> View
                             Profile </a>
                         <a (click)="dropDownActive=!dropDownActive" class="dropdown-item"
@@ -128,7 +128,7 @@
                 </li>
 
                 <li class="nav-item dropdown language-dropdown more-dropdown d-none d-sm-block" *ngIf="user!.admin">
-                    <a href="javascript:void(0)" routerLink="/admindashboard" class="btn btn-success btn-lg">
+                    <a href="javascript:void(0)" routerLink="/index/admindashboard" class="btn btn-success btn-lg">
                         ADMIN DASHBOARD
                     </a>
                 </li>
@@ -145,7 +145,7 @@
 
                     <div [class.show]="dropDownActive" class="dropdown-menu" aria-labelledby="dropdownMenuLink-1">
 
-                        <a (click)="dropDownActive=!dropDownActive" class="dropdown-item" routerLink="/profile/profile">
+                        <a (click)="dropDownActive=!dropDownActive" class="dropdown-item" routerLink="/index/profile/profile">
                             <i class=" mr-2 fa fa-user"></i> View
                             Profile </a>
                         <a (click)="dropDownActive=!dropDownActive" class="dropdown-item"
