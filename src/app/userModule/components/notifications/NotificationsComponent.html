@@ -31,7 +31,7 @@
                                                     </p>
                                                     <div class="row">
                                                         <div class="col-12">
-                                                            <a routerLink="/repost/{{logsNotification.logPost.id}}"
+                                                            <a routerLink="/index/repost/{{logsNotification.logPost.id}}"
                                                                 class="btn btn-success badge-sm">
                                                                 Repost
                                                             </a>
@@ -61,12 +61,12 @@
                                         </div>
                                         <div class="row" *ngFor="let walletNotification of walletNotifications">
                                             <div class="col-2 col-md-2">
-                                                <a routerLink="/profile/profile/{{walletNotification.pledge.shopper.id}}"
+                                                <a routerLink="/index/profile/profile/{{walletNotification.pledge.shopper.id}}"
                                                     *ngIf="walletNotification.pledge.log.shopper.id===loggedInShopper.id">
                                                     <img src="{{configService.getServerUrl()+walletNotification.pledge.shopper.profilePicUrl}}"
                                                         class="wallet-img" alt="">
                                                 </a>
-                                                <a routerLink="/profile/profile/{{walletNotification.pledge.log.shopper.id}}"
+                                                <a routerLink="/index/profile/profile/{{walletNotification.pledge.log.shopper.id}}"
                                                     *ngIf="walletNotification.pledge.shopper.id===loggedInShopper.id">
                                                     <img src="{{configService.getServerUrl()+walletNotification.pledge.log.shopper.profilePicUrl}}"
                                                         class="wallet-img" alt="">
@@ -119,12 +119,12 @@
                                         </div>
                                         <div class="row" *ngFor="let connectNotification of connectsNotifications">
                                             <div class="col-2">
-                                                <a routerLink="/profile/profile/{{connectNotification.connectionRequest.requester.id}}"
+                                                <a routerLink="/index/profile/profile/{{connectNotification.connectionRequest.requester.id}}"
                                                     *ngIf="connectNotification.shopper.id===connectNotification.connectionRequest.recipient.id">
                                                     <img src="{{configService.getServerUrl()+connectNotification.connectionRequest.requester.profilePicUrl}}"
                                                         class="wallet-img" alt="">
                                                 </a>
-                                                <a routerLink="/profile/profile/{{connectNotification.connectionRequest.recipient.id}}"
+                                                <a routerLink="/index/profile/profile/{{connectNotification.connectionRequest.recipient.id}}"
                                                     *ngIf="connectNotification.shopper.id===connectNotification.connectionRequest.requester.id">
                                                     <img src="{{configService.getServerUrl()+connectNotification.connectionRequest.recipient.profilePicUrl}}"
                                                         class="wallet-img" alt="">

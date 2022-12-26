@@ -125,8 +125,8 @@ export class AuthenticationService {
             this.user.next(false);
             observer.next(true);
             sessionStorage.clear();
-            this.router.navigate(['home'])
-            window.location.reload();
+            this.router.navigate(['/index/home']);
+            // window.location.reload();
 
             this.libHttp.post("/logout", {})
                 .subscribe(

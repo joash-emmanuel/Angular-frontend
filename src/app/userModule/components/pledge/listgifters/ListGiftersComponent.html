@@ -42,7 +42,7 @@
 
                             <tbody>
                                 <tr *ngFor="let pledge of pledges">
-                                    <td class="td_gift_page"><a routerLink="/profile/profile/{{pledge.log.shopper.id}}"> <img
+                                    <td class="td_gift_page"><a routerLink="/index/profile/profile/{{pledge.log.shopper.id}}"> <img
                                                 src="{{configService.getServerUrl()+[pledge.shopper.profilePicUrl]}}" class="mr-4 table-img"
                                                 alt=""></a> <span class="table-text">{{pledge.shopper.firstName}}
                                             {{pledge.shopper.lastName}}</span></td>

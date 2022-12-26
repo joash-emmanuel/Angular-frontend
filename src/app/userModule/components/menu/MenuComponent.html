@@ -8,17 +8,17 @@
                             role="tab" aria-controls="v-pills-home" aria-selected="true"> <i
                                 class="fa fa-home fa-2x mr-2" aria-hidden="true"></i>
                             Home</a>
-                        <a class="nav-link icon-normal " id="v-pills-home-tab" routerLink="/brands"
+                        <a class="nav-link icon-normal " id="v-pills-home-tab" routerLink="/index/brands"
                             routerLinkActive="icon-active" role="tab" aria-controls="v-pills-home" aria-selected="true">
                             <i class="fa fa-shopping-bag fa-2x mr-2" aria-hidden="true"></i> Brands </a>
                         <a class="nav-link icon-normal " id="v-pills-home-tab" routerLink="logs"
                             routerLinkActive="icon-active" role="tab" aria-controls="v-pills-home" aria-selected="true">
                             <i class="fa fa-calendar-plus-o fa-2x mr-2" aria-hidden="true"></i> Logs</a>
 
-                        <a class="nav-link icon-normal " id="v-pills-home-tab" routerLink="/wallet/wallet"
+                        <a class="nav-link icon-normal " id="v-pills-home-tab" routerLink="/index/wallet/wallet"
                             routerLinkActive="icon-active" role="tab" aria-controls="v-pills-home" aria-selected="true">
                             <i class="fa fa-credit-card fa-2x mr-2" aria-hidden="true"></i>Wallet</a>
-                        <a class="nav-link icon-normal " id="v-pills-home-tab" routerLink="/notifications"
+                        <a class="nav-link icon-normal " id="v-pills-home-tab" routerLink="/index/notifications"
                             routerLinkActive="icon-active" role="tab" aria-controls="v-pills-home" aria-selected="true">
                             <i class="fa fa-bell-o fa-2x mr-2" aria-hidden="true"></i>
                             Notifications</a>
@@ -26,7 +26,7 @@
                         <h6 class="pt-3 pb-1 suggested-connects">Suggested Connects</h6>
 
                         <a class="nav-link icon-normal " id="v-pills-home-tab"
-                            routerLink="/profile/profile/{{suggestedConnect.id}}" role="tab"
+                            routerLink="/index/profile/profile/{{suggestedConnect.id}}" role="tab"
                             aria-controls="v-pills-home" aria-selected="true"
                             *ngFor="let suggestedConnect of suggestedConnects"> <img class="sidebar-icons mr-2"
                                 src="{{configService.getServerUrl()+suggestedConnect.profilePicUrl}}"
@@ -50,19 +50,19 @@
                     </a>
                 </div>
                 <div class="col-12 my-4">
-                    <a routerLinkActive="icon-active" routerLink="/brands"> <i class="fa fa-shopping-bag fa-2x" aria-hidden="true"></i>
+                    <a routerLinkActive="icon-active" routerLink="/index/brands"> <i class="fa fa-shopping-bag fa-2x" aria-hidden="true"></i>
                         <br>
                         <p class="menu-mobile">Brands</p>
                     </a>
                 </div>
                 <div class="col-12 my-4">
-                    <a routerLinkActive="icon-active" routerLink="/logs"> <i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
+                    <a routerLinkActive="icon-active" routerLink="/index/logs"> <i class="fa fa-calendar fa-2x" aria-hidden="true"></i>
                         <br>
                         <p class="menu-mobile">Logs</p>
                     </a>
                 </div>
                 <div class="col-12 my-4">
-                    <a routerLinkActive="icon-active" routerLink="/wallet/wallet"> <i class="fa fa-credit-card fa-2x"
+                    <a routerLinkActive="icon-active" routerLink="/index/wallet/wallet"> <i class="fa fa-credit-card fa-2x"
                             aria-hidden="true"></i>
                         <br>
                         <p class="menu-mobile">Wallet</p>

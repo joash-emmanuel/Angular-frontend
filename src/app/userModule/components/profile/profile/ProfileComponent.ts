@@ -167,7 +167,7 @@ export class ProfileComponent implements OnInit {
       return;
     }
 
-    this.router.navigate(['profile', 'edit']);
+    this.router.navigate(['index','profile', 'edit']);
   }
 
   connect() {
