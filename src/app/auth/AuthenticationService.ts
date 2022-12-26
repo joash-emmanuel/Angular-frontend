@@ -19,7 +19,6 @@ export class AuthenticationService {
 
     constructor(
         private libHttp: LibHttp,
-        private shopperService: ShopperService,
         private jwtHelperService: JwtHelperService,
         private router: Router
     ) {
@@ -127,6 +126,7 @@ export class AuthenticationService {
             observer.next(true);
             sessionStorage.clear();
             this.router.navigate(['home'])
+            window.location.reload();
 
             this.libHttp.post("/logout", {})
                 .subscribe(

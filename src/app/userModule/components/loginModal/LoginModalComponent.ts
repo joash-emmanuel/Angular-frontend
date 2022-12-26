@@ -94,6 +94,7 @@ export class LoginModalComponent {
 
                 console.log('result', result);
                 this.activeModal.close();
+                window.location.reload();
 
             });
     }
