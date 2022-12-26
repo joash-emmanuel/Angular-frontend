@@ -21,7 +21,7 @@
                                     <div class="row" *ngIf="yourLogs.length>0">
                                         <div class="col-md-6" *ngFor="let logPost of yourLogs">
                                             <div class="card component-card_9">
-                                                <a routerLink="/home">
+                                                <a routerLink="/index/home">
                                                     <img src="{{configService.getServerUrl()+logPost.logImages[0]!?.url}}"
                                                         class="card-img-top package_images" alt="widget-card-2">
                                                 </a>
@@ -61,7 +61,7 @@
                                         <div class="col-md-6" *ngFor="let suggestedLog of suggestedLogs">
 
                                             <div class="card component-card_9">
-                                                <a routerLink="/home">
+                                                <a routerLink="/index/home">
                                                     <img src="{{configService.getServerUrl()+suggestedLog.logImages[0]!?.url}}"
                                                         class="card-img-top package_images" alt="widget-card-2">
                                                 </a>
