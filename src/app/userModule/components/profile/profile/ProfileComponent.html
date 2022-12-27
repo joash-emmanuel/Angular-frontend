@@ -1,3 +1,9 @@
+<style>
+    .circular {
+        display: inline-block;
+        border-radius: 50%;
+    }
+</style>
 <div class="col-12">
     <div class="widget widget-chart-three">
         <div class="widget-content animated-underline-content widget-content-area">
@@ -5,8 +11,8 @@
                 <div class="row">
                     <div class="col-md-2 col-4">
                         <div class="b-logo d-flex align-items-center">
-                            <img class="img-fluid view_profile_brand_img_1"
-                                src="{{configService.getServerUrl()+shopper!?.profilePicUrl}}">
+                            <img class="img-fluid view_profile_brand_img_1 circular"
+                                src="{{shopperService.getProfilePic(shopper!?.profilePicUrl)}}">
                         </div>
                     </div>
 

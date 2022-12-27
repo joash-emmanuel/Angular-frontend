@@ -49,7 +49,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private authenticationService: AuthenticationService,
     private activatedRoute: ActivatedRoute,
-    private shopperService: ShopperService,
+    public shopperService: ShopperService,
     private logitService: LogitService,
     private shopperConnectionService: ShopperConnectionService,
     private brandConnectionService: BrandConnectionService,

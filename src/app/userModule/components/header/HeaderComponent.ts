@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, ViewChild } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
 import { debounceTime, distinctUntilChanged, map, Observable, OperatorFunction } from "rxjs";
@@ -36,7 +36,7 @@ export class HeaderComponent implements AfterViewInit {
         private modalService: NgbModal,
         private authenticationService: AuthenticationService,
         private router: Router,
-        private shopperService: ShopperService,
+        public shopperService: ShopperService,
         public configService: ConfigService
     ) {
 
