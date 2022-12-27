@@ -19,7 +19,7 @@ export class EditProfileComponent implements OnInit {
     constructor(
         private authenticationService: AuthenticationService,
         public configService: ConfigService,
-        private shopperService: ShopperService,
+        public shopperService: ShopperService,
         private router: Router
     ) {
 

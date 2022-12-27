@@ -1,3 +1,9 @@
+<style>
+    .circular {
+        display: inline-block;
+        border-radius: 50%;
+    }
+</style>
 <!--  BEGIN NAVBAR  -->
 <div class="header-container">
     <header class="header navbar navbar-expand-sm fixed-top">
@@ -101,14 +107,15 @@
                     <a #dropDown (click)="toggleDropDown()" href="javascript:void(0)" role="button" aria-haspopup="true"
                         aria-expanded="false">
 
-                        <img *ngIf="user!.profilePicUrl" src="{{configService.getServerUrl()+user!.profilePicUrl}}"
-                            class="img-fluid" style="height:50px ;" alt="profile picture" />
+                        <img *ngIf="user!.profilePicUrl" src="{{shopperService.getProfilePic(user!.profilePicUrl)}}"
+                            class="img-fluid circular" style="height:50px ;width: 50px;" alt="profile picture" />
                         <i class="fa fa-user fa-lg" *ngIf="!user!.profilePicUrl"></i>
                     </a>
 
                     <div [class.show]="dropDownActive" class="dropdown-menu" aria-labelledby="dropdownMenuLink-1">
 
-                        <a (click)="dropDownActive=!dropDownActive" class="dropdown-item" routerLink="/index/profile/profile">
+                        <a (click)="dropDownActive=!dropDownActive" class="dropdown-item"
+                            routerLink="/index/profile/profile">
                             <i class=" mr-2 fa fa-user"></i> View
                             Profile </a>
                         <a (click)="dropDownActive=!dropDownActive" class="dropdown-item"
@@ -137,15 +144,16 @@
                     <a (click)="toggleDropDown()" href="javascript:void(0)" class="dropdown-toggle" role="button"
                         id="dropdownMenuLink-1" aria-haspopup="true" aria-expanded="false">
 
-                        <img *ngIf="user!.profilePicUrl" src="{{configService.getServerUrl()+user!.profilePicUrl}}"
-                            class="img-fluid" style="height:60px ;" alt="profile picture" />
+                        <img *ngIf="user!.profilePicUrl" src="{{shopperService.getProfilePic(user!.profilePicUrl)}}"
+                            class="img-fluid circular" style="height:60px ; width: 60px;" alt="profile picture" />
 
                         <i class="fa fa-user fa-lg" *ngIf="!user!.profilePicUrl"></i>
                     </a>
 
                     <div [class.show]="dropDownActive" class="dropdown-menu" aria-labelledby="dropdownMenuLink-1">
 
-                        <a (click)="dropDownActive=!dropDownActive" class="dropdown-item" routerLink="/index/profile/profile">
+                        <a (click)="dropDownActive=!dropDownActive" class="dropdown-item"
+                            routerLink="/index/profile/profile">
                             <i class=" mr-2 fa fa-user"></i> View
                             Profile </a>
                         <a (click)="dropDownActive=!dropDownActive" class="dropdown-item"

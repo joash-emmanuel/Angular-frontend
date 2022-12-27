@@ -14,6 +14,7 @@ import { ConfigService } from "src/app/config/ConfigService";
 import { ShopperConnectionService } from "../shopperconnection/ShopperConnectionService";
 import { LogPostService } from "../logs/LogPostService";
 import { LogPostListing } from "../logs/LogPostListing";
+import { ShopperService } from "../shopper/ShopperService";
 
 @Component(
     {
@@ -34,7 +35,8 @@ export class ListingComponent implements AfterViewInit {
         private logitService: LogitService,
         public configService: ConfigService,
         private shopperConnectionService: ShopperConnectionService,
-        private logPostService: LogPostService
+        private logPostService: LogPostService,
+        public shopperService: ShopperService
     ) {
 
     }
