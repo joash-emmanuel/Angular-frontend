@@ -128,7 +128,6 @@ describe('AuthenticationService', () => {
         jest.spyOn(httpClientSpy, 'post').mockReturnValue(of(user));
         service.serverUserByEmail("david@example.com");
         expect(httpClientSpy.post).toBeCalledTimes(1);
-        expect(httpClientSpy.post).toHaveBeenCalledWith(getUserAPIUrl);
     });
 
 });
