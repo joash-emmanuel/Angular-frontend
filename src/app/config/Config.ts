@@ -1,3 +1,3 @@
 export class Config {
-    serverUrl: string = "http://dev.brandlogs.com:8000";
+    serverUrl: string = "http://Backend-LB-1653441132.us-west-1.elb.amazonaws.com";
 }
