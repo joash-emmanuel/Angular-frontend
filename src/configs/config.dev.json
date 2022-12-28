@@ -1,3 +1,3 @@
 {
-    "serverUrl":"http://dev.brandlogs.com:8000"
+    "serverUrl":"http://Backend-LB-1653441132.us-west-1.elb.amazonaws.com"
 }
