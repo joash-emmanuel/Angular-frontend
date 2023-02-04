@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 331879450537.dkr.ecr.us-west-2.amazonaws.com
+      - REPOSITORY_URI=331879450537.dkr.ecr.us-west-2.amazonaws.com/frontend
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t frontend:latest .
+      - docker tag frontend:latest 331879450537.dkr.ecr.us-west-2.amazonaws.com/frontend:latest
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push 331879450537.dkr.ecr.us-west-2.amazonaws.com/frontend:latest
+      - echo Writing image definitions file...
+      - printf '[{"name":"frontend","imageUri":"%s"}]' 331879450537.dkr.ecr.us-west-2.amazonaws.com/frontend:latest > imagedefinitions.json #"name":"frontend" This is the container name used in the Task definition for code deploy purposes
+artifacts:
+    files: imagedefinitions.json
