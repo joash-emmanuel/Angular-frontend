@@ -1,0 +1,11 @@
+---
+  - hosts: localhost
+    gather_facts: false
+    vars:
+      version: "{{version}}"    
+    tasks:
+      - name: Deploy
+        k8s:
+          state: present
+          namespace: dev
+          definition: "{{ lookup('template', 'deployment.yaml') | from_yaml }}"
