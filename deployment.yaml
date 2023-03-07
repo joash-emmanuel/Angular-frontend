@@ -28,20 +28,3 @@ spec:
             memory: "1000Mi"
             cpu: "250m"    ##If I request 512 Mi, the fargate node will request another 250 Mi for the init container
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  namespace: dev
-  name: frontend-service
-  labels:
-    app: frontend-app
-  annotations:
-    alb.ingress.kubernetes.io/healthcheck-path: /
-spec:
-  type: NodePort
-  selector:
-    app: frontend-app
-  ports:
-    - port: 80
-      targetPort: 80

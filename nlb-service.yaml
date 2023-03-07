@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-app-service
+  namespace: dev
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb-ip
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+    service.beta.kubernetes.io/aws-load-balancer-subnets: subnet-04b8484482de307be,subnet-075dc3ea7209d50cd
+    service.beta.kubernetes.io/aws-load-balancer-security-groups: sg-053e418cf068d5134,sg-0e5ed1c106273883b
+    ##dont forget to add SG formed automatically with the description(EKS created security group applied to ENI that is attached to EKS Control Plane master nodes, as well as any managed workloads) or maybe try tagging as the picture says
+    #service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  type: LoadBalancer
+  selector:
+    app: frontend-app
+
+#If you're deploying to Fargate nodes, remove the service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing line.
+
