@@ -1,0 +1,78 @@
+#editing config-map to add the user -- https://archive.eksworkshop.com/beginner/090_rbac/map_iam_user_to_k8s_user/
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: dev-role
+  namespace: dev
+rules:
+  - apiGroups:
+        - apps
+        - autoscaling
+        - batch
+        - extensions
+        - policy
+        - rbac.authorization.k8s.io
+    resources:
+      - pods
+      - deployments
+      - ingress
+      - jobs
+      - namespaces
+      - nodes
+      - serviceaccounts
+      - services
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+
+#Simply creating a role will not provide us any security. We need to then assign the role to users or service accounts
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: develop            
+  name: full_access
+rules:
+- apiGroups: ["*"]
+  resources: ["*"]
+  verbs: ["*"]
+#This one grants full access to the namespace
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: dev-binding
+  namespace: dev
+subjects:
+  - kind: User       # we can have User/Group/ServiceAccount
+    name: joash         #Name of user or service account or Group
+    namespace: dev
+roleRef:
+  kind: Role
+  name: dev-role          #name of the role
+  apiGroup: rbac.authorization.k8s.io
+
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: cr_full_access
+rules:
+- apiGroups: ["*"]
+  resources: ["*"]
+  verbs: ["*"]
+
+#This one grants full access to the cluster
+
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: full_access_cluster_role_binding
+subjects:
+- kind: User
+  name: joash
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: cr_full_access
+  apiGroup: rbac.authorization.k8s.io

@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-app
+  namespace: dev
+  labels:
+    app: frontend-app
+spec:
+  selector:
+    matchLabels:
+      app: frontend-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: frontend-app
+    spec:
+      containers:
+      - name: frontend
+        image: 331879450537.dkr.ecr.us-west-2.amazonaws.com/frontend:latest
+        livenessProbe:
+        httpGet:
+            path: /
+            port: 80
+        initialDelaySeconds: 5
+        periodSeconds: 15
+        failureThreshold: 1
+        readinessProbe:
+          tcpSocket:
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        ports:
+            - containerPort: 80
+        resources:
+          limits:
+            memory: "1000Mi"
+            cpu: "250m"
+          requests:
+            memory: "1000Mi"
+            cpu: "250m"    ##If I request 512 Mi, the fargate node will request another 250 Mi for the init container
+
+        
+          
+
+#https://apprecode.com/blog/kubernetes-rediness-liveness-probes
+#https://www.containiq.com/post/kubernetes-liveness-probe

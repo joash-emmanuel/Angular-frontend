@@ -18,17 +18,22 @@ phases:
     commands:
       - docker build -t frontend:latest .
       - docker tag frontend:latest 331879450537.dkr.ecr.us-west-2.amazonaws.com/frontend:latest
+      - docker push 331879450537.dkr.ecr.us-west-2.amazonaws.com/frontend:latest
 
   post_build:
     commands:
-      - docker push 331879450537.dkr.ecr.us-west-2.amazonaws.com/frontend:latest
-      - CREDENTIALS=$(aws sts assume-role --role-arn $EKS_KUBECTL_ROLE_ARN --role-session-name emmanuel --duration-seconds 900)
+      - CREDENTIALS=$(aws sts assume-role --role-arn arn:aws:iam::331879450537:role/EksWorkshopCodeBuildKubectlRole  --role-session-name code-build --duration-seconds 900)
+      - CREDENTIALS=$(aws sts assume-role --role-arn $EKS_KUBECTL_ROLE_ARN --role-session-name codebuild-kubectl --duration-seconds 900)
       - export AWS_ACCESS_KEY_ID="$(echo ${CREDENTIALS} | jq -r '.Credentials.AccessKeyId')"
       - export AWS_SECRET_ACCESS_KEY="$(echo ${CREDENTIALS} | jq -r '.Credentials.SecretAccessKey')"
       - export AWS_SESSION_TOKEN="$(echo ${CREDENTIALS} | jq -r '.Credentials.SessionToken')"
       - export AWS_EXPIRATION=$(echo ${CREDENTIALS} | jq -r '.Credentials.Expiration')
-      - aws eks update-kubeconfig --name new-frontend-18
+      - aws eks update-kubeconfig --region us-west-2 --name (cluster)
       - kubectl apply -f deployment.yaml
       - printf '[{"name":"frontend","imageUri":"%s"}]' $REPOSITORY_URI:$TAG > build.json
 artifacts:
   files: build.json
+
+
+#frontend is the name of the container
+#pass $EKS_KUBECTL_ROLE_ARN as variable in environment variable section in code-build = The name of the role created.
