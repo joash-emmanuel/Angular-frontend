@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+
+    stages{
+        stage ('checkout'){
+            steps{
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-credentials', url: 'https://github.com/joash-emmanuel/frontend.git']])
+            }
+
+        }
+
+        stage ('docker build') {
+            steps{
+                script{
+                    docker.build('frontend') 
+                }
+               
+            }
+        }
+
+        stage ('push to ecr') {
+            steps{ 
+                script{
+                    docker.withRegistry('https://331879450537.dkr.ecr.us-west-2.amazonaws.com', 'ecr:us-west-2:AWS-credentials') {
+                        docker.image('frontend').push('latest')    
+                    }
+                }
+            }
+        }
+        stage ( 'deploy to EKS') {
+            steps {
+                script{
+                    withKubeConfig([credentialsId: 'k8s']) {
+                        sh "curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.25.6/2023-01-30/bin/linux/amd64/kubectl"
+                        sh "curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.25.6/2023-01-30/bin/linux/amd64/kubectl.sha256"
+                        sh "chmod +x ./kubectl"
+                        sh "mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin"
+                        sh "echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc"
+                        sh "./kubectl apply -f deployment.yaml"
+                    }
+                }
+            }
+        }
+    }
+}
