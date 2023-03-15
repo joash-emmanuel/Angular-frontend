@@ -1,0 +1,32 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUMvakNDQWVhZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRJek1ETXhOVEV6TkRFeU5sb1hEVE16TURNeE1qRXpOREV5Tmxvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTExHCmNDZzZWSnFyMTFTUFF5Z204TEVsbkdxNnFPbit6cWwzRjVEMjNjeFYvcm5GbkRDZUdKM3lNb3V3MlJIaWNjaEoKMXIrK1BUU0FMN3h3Q3RKdG4rdCt0czB0V1NRUHdHaEdMSTVxd3V3YWJUeTFQZFkvUE5zbzdGQ2hmZ2pBZ2psLwp0enhnd0Z5d1FNbVJWVjE2VHo1eFZ0SFBBZDlSK1pBUVVac0U5NEFHNnJ0RVlCUVRiUFNHZUNPV3NJaW5WSEhKCjZaSnRJbUhCeUtSakxXbUhwaUI1R3FtTmQzenpxb1lVVzFJdWdNSWJkSHM5TWVXZXgrRDd6QUoxWkkzV0RpekcKZ01LQjJsS0dFOGtHdWFldTJ6ZC9NK1gzUi9qVmN3YkJtanFsN2xldFFuTmlZcnhHN0RGMmNENktXQ2lLeXF5OApoV05tRHhoaUlwZ1ZMVFRKZW5zQ0F3RUFBYU5aTUZjd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0hRWURWUjBPQkJZRUZLdVFxZW91M2FmZGNBQ1k3T3lZMk9lRVU0WE9NQlVHQTFVZEVRUU8KTUF5Q0NtdDFZbVZ5Ym1WMFpYTXdEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUJBQzRoVitLMkZPZnRXa3R4OVhOTwppb1lqZHVVeG1YL0pJMk5wMFBFdFlLYkhyaXdDUmM1YVVHbnVUYlZoaVhkNi9SclI0enEvZWtHUUxhU2N2eVJSCitEV2F0cmhtRHRhWkZvOE9xcWdVQmRZMlZ3QlVzelZtSUFLYXdjYVZoNy82U1R6WmlFdlVsdDVuOUxwcU9WdjAKZzZzVFEwQWJJeWNKVkNGME5zalNJTFpXVjlCczdBcGs5bHhQTEdyVHZYQSt3NGxSY1VTMmR2aWJNYVpTeHgyMgpsRkYrL0xUZjJtQjFxU3B6WGFvR0lFSjdJdnQrRmlQSHprR1pMNEN3eFl5NEZpb1dBajg1RndwaWxPd0pZenRzCmdWc2Rza01DeTRITVp3Zk1OWE5mNWhZejJFMHY5bnBJU1lpNkxEdWlJM0hLdURhR0RUbGhFVW4zaC9XckpHWkIKRmVJPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+    server: https://DAB066F8BF5452C31F003A022D61AA01.gr7.us-west-2.eks.amazonaws.com
+  name: arn:aws:eks:us-west-2:3318***:cluster/frontend-1
+contexts:
+- context:
+    cluster: arn:aws:eks:us-west-2:3318***:cluster/frontend-1
+    user: arn:aws:eks:us-west-2:33187***:cluster/frontend-1
+  name: arn:aws:eks:us-west-2:331***:cluster/frontend-1
+current-context: arn:aws:eks:us-west-2:331879450537:cluster/frontend-1
+kind: Config
+preferences: {}
+users:
+- name: arn:aws:eks:us-west-2:33187***:cluster/frontend-1
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1beta1
+      args:
+      - --region
+      - us-west-2
+      - eks
+      - get-token
+      - --cluster-name
+      - frontend-1
+      command: /usr/local/bin/aws
+#aws eks update-kubeconfig --region (region name) --name (cluster) on both jenkins user and normal user   sudo su - jenkins
+#use the cat ~/.kube/config to get the right output
+#change the command to /usr/local/bin/aws
+
+#
